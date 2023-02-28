@@ -1,7 +1,6 @@
-package tv.codely.java_basic_skeleton;
+package pokedex.pokemon.infrastructure;
 
-public class Greeter {
-
+public class GetPokemonTypeWithConsole {
     public String greet(String name) {
         return "Hello " + name;
     }
