@@ -1,5 +1,7 @@
 package pokedex.pokemon.domain;
 
+import java.util.List;
+
 public class Pokemon {
     private String name;
     private List<String> types;
