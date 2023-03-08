@@ -20,7 +20,9 @@ public class PokemonTypes {
     }
 
     public String getCommaSeparatedTypes() {
-        return Arrays.toString(types);
+        String jsonFormatTypes = Arrays.toString(types);
+        var commaSeparatedTypes = jsonFormatTypes.substring(1, jsonFormatTypes.length() - 1);
+        return commaSeparatedTypes;
     }
 
 }
