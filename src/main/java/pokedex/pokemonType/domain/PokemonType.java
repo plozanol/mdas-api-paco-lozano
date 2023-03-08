@@ -1,8 +1,8 @@
-package pokedex.pokemon.domain;
+package pokedex.pokemonType.domain;
 
 
 public class PokemonType {
-    private String type;
+    private final String type;
     public PokemonType(String type){
         this.type = type;
     }
