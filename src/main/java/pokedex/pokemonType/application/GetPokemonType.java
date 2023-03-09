@@ -1,5 +1,6 @@
 package pokedex.pokemonType.application;
 
+import pokedex.pokemonType.domain.PokemonName;
 import pokedex.pokemonType.domain.PokemonTypeRepositoryConnectionException;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
 import pokedex.pokemonType.domain.exceptions.PokemonNotFoundException;
@@ -16,7 +17,7 @@ public class GetPokemonType {
     }
 
     public PokemonTypes execute(String pokemonName) throws PokemonWithoutTypesException, EmptyPokemonNameParameterException, PokemonTypeRepositoryConnectionException, PokemonNotFoundException {
-        var types = pokemonTypeRepository.get(pokemonName);
+        var types = pokemonTypeRepository.get(new PokemonName(pokemonName));
         return types;
     }
 

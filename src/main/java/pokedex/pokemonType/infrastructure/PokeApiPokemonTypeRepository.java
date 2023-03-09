@@ -18,11 +18,11 @@ public class PokeApiPokemonTypeRepository implements PokemonTypeRepository {
 
     private static final String apiUrl = "https://pokeapi.co/api/v2/pokemon/";
 
-    public PokemonTypes get(String name) throws PokemonWithoutTypesException, PokemonTypeRepositoryConnectionException, EmptyPokemonNameParameterException, PokemonNotFoundException {
-        guardPokemonNameIsNotEmpty(name);
+    public PokemonTypes get(PokemonName name) throws PokemonWithoutTypesException, PokemonTypeRepositoryConnectionException, EmptyPokemonNameParameterException, PokemonNotFoundException {
+        guardPokemonNameIsNotEmpty(name.toString());
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s%s", apiUrl, name)))
+                .uri(URI.create(String.format("%s%s", apiUrl, name.toString())))
                 .build();
         HttpResponse<String> response;
         try {
