@@ -1,6 +1,5 @@
 package pokedex.pokemonType.domain;
 
-
 import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 
 import java.util.Arrays;
@@ -19,10 +18,7 @@ public class PokemonTypes {
         }
     }
 
-    public String getCommaSeparatedTypes() {
-        String jsonFormatTypes = Arrays.toString(types);
-        var commaSeparatedTypes = jsonFormatTypes.substring(1, jsonFormatTypes.length() - 1);
-        return commaSeparatedTypes;
+    public PokemonType[] getTypes() {
+        return types;
     }
-
 }
