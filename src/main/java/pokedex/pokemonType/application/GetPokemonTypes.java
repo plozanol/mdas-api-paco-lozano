@@ -8,11 +8,11 @@ import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 import pokedex.pokemonType.domain.PokemonTypeRepository;
 import pokedex.pokemonType.domain.PokemonTypes;
 
-public class GetPokemonType {
+public class GetPokemonTypes {
 
     private final PokemonTypeRepository pokemonTypeRepository;
 
-    public GetPokemonType(PokemonTypeRepository pokemonTypeRepository) {
+    public GetPokemonTypes(PokemonTypeRepository pokemonTypeRepository) {
         this.pokemonTypeRepository = pokemonTypeRepository;
     }
 

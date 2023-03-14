@@ -1,6 +1,6 @@
 package pokedex.pokemonType.infrastructure;
 
-import pokedex.pokemonType.application.GetPokemonType;
+import pokedex.pokemonType.application.GetPokemonTypes;
 import pokedex.pokemonType.domain.PokemonTypeRepositoryConnectionException;
 import pokedex.pokemonType.domain.PokemonTypes;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class GetPokemonTypeWithConsole {
 
     public static void main(String[] args) {
-        var getPokemonType = new GetPokemonType(new PokeApiPokemonTypeRepository());
+        var getPokemonType = new GetPokemonTypes(new PokeApiPokemonTypeRepository());
         if (args.length != 1) {
             System.out.println("No correct input");
             return;
