@@ -1,5 +1,6 @@
 Prerequisites:
 - Java SDK 17
+
 There are to ways to execute this project, via terminal commands and an http request.
   To run via terminal request follow this steps:
   - Open a terminal and change the directory to the root of the project.
