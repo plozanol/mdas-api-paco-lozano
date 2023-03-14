@@ -14,7 +14,7 @@
     <name>mdas-api-g2-vs</name>
     <description>mdas-api-g2-vs</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <spring-shell.version>3.0.0</spring-shell.version>
         <exec.mainClass>pokedex.pokemonType.infrastructure.GetPokemonTypeWithConsole</exec.mainClass>
     </properties>
