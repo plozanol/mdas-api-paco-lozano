@@ -1,0 +1,1 @@
+To prepare the enviorment for excecuting the application, fi
