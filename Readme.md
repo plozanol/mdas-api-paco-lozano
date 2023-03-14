@@ -1,5 +1,5 @@
 Prerequisites:
-- Java SDK 11
+- Java SDK 17
 
 There are to ways to execute this project, via terminal commands and an http request.
   
