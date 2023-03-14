@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import pokedex.pokemonType.application.GetPokemonTypes;
+import pokedex.pokemonType.domain.PokemonType;
 import pokedex.pokemonType.domain.PokemonTypeRepositoryConnectionException;
 import pokedex.pokemonType.domain.PokemonTypes;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
@@ -15,14 +16,15 @@ import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 @RestController
 public class GetPokemonTypeWithHttp {
     @GetMapping("getPokemonTypesByName/{pokemonName}")
-    public static PokemonTypes getPokemonTypesByName(@PathVariable String pokemonName) {
+    public static String getPokemonTypesByName(@PathVariable String pokemonName) {
         var getPokemonType = new GetPokemonTypes(new PokeApiPokemonTypeRepository());
         if (pokemonName.isBlank()) {
             System.out.println("No correct input");
         }
         try {
             PokemonTypes pokemonTypes = getPokemonType.execute(pokemonName);
-            return pokemonTypes;
+            String jsonFormatTypes = transformToJSON(pokemonTypes);
+            return jsonFormatTypes;
         } catch (PokemonNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
         } catch (EmptyPokemonNameParameterException e) {
@@ -30,6 +32,19 @@ public class GetPokemonTypeWithHttp {
         } catch (PokemonWithoutTypesException | PokemonTypeRepositoryConnectionException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage());
         }
+    }
+
+    private static String transformToJSON(PokemonTypes pokemonTypes) {
+        var result = "[";
+        for (PokemonType type : pokemonTypes.getTypes()) {
+            result += "\"";
+            result += type;
+            result += "\",";
+        }
+        result = result.substring(0,result.length()-1);
+        result += "]";
+
+        return result;
     }
 }
 
