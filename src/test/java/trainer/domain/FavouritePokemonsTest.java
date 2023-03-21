@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pokedex.pokemonType.domain.PokemonType;
 import pokedex.pokemonType.domain.PokemonTypeCollection;
+import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 import trainers.trainer.domain.FavouritePokemons;
 import trainers.trainer.domain.PokemonID;
 import trainers.trainer.domain.exceptions.PokemonAlredyExistInFavouritePokemons;
@@ -16,6 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 public class FavouritePokemonsTest {
@@ -35,9 +37,16 @@ public class FavouritePokemonsTest {
 
     @Test
     void shouldThrowException_whenAddingExistingPokemon() {
-        // GIVEN
-
-        // THEN
+        try {
+            // GIVEN
+            PokemonID pokemonID = new PokemonID(1);
+            FavouritePokemons favouritePokemons = new FavouritePokemons();
+            // THEN
+            favouritePokemons.addFavouritePokemon(pokemonID);
+            assertThrows(PokemonAlredyExistInFavouritePokemons.class, () -> favouritePokemons.addFavouritePokemon(pokemonID));
+        } catch (PokemonIdOutOfRangeException | PokemonAlredyExistInFavouritePokemons e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
