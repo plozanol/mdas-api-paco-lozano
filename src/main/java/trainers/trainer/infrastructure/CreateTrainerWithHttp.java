@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import trainers.trainer.application.CreateTrainer;
-import trainers.trainer.domain.exceptions.TrainerAlredyCreated;
+import trainers.trainer.domain.exceptions.TrainerAlreadyCreatedException;
 
 @RestController
 public class CreateTrainerWithHttp {
@@ -18,9 +18,9 @@ public class CreateTrainerWithHttp {
         blankIdGuard(ID);
         try {
             createTrainer.execute(ID);
-        } catch (TrainerAlredyCreated e) {
+        } catch (TrainerAlreadyCreatedException e) {
             //TODO check HTTP STATUS
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"TrainerAlredyCreated");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"TrainerAlreadyCreatedException");
         }
     }
 

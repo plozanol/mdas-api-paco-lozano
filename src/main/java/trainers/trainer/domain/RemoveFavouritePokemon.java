@@ -1,7 +1,7 @@
 package trainers.trainer.domain;
 
-import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemons;
-import trainers.trainer.domain.exceptions.TrainerDontExist;
+import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
+import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 public class RemoveFavouritePokemon {
     private final TrainerRepository trainerRepository;
@@ -10,16 +10,16 @@ public class RemoveFavouritePokemon {
         this.trainerRepository = trainerRepository;
     }
 
-    public void execute(TrainerID ID, PokemonID pokemonID) throws TrainerDontExist, PokemonNotExistInFavouritePokemons {
+    public void execute(TrainerID ID, PokemonID pokemonID) throws TrainerDontExistException, PokemonNotExistInFavouritePokemonsException {
         trainerExistGuard(ID);
         Trainer trainer = trainerRepository.get(ID);
         trainer.removeFavouritePokemon(pokemonID);
         trainerRepository.update(trainer);
     }
 
-    private void trainerExistGuard(TrainerID id) throws TrainerDontExist {
+    private void trainerExistGuard(TrainerID id) throws TrainerDontExistException {
         if (!trainerRepository.exist(id)) {
-            throw new TrainerDontExist();
+            throw new TrainerDontExistException();
         }
     }
 }

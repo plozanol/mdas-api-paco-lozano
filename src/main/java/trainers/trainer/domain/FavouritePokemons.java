@@ -1,7 +1,7 @@
 package trainers.trainer.domain;
 
-import trainers.trainer.domain.exceptions.PokemonAlredyExistInFavouritePokemons;
-import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemons;
+import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
+import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,25 +14,25 @@ public class FavouritePokemons {
         favouritePokemonsIds = new HashSet<>();
     }
 
-    public void addFavouritePokemon(PokemonID pokemonID) throws PokemonAlredyExistInFavouritePokemons {
+    public void addFavouritePokemon(PokemonID pokemonID) throws PokemonAlreadyExistInFavouritePokemonsException {
         guardPokemonIdDuplicated(pokemonID);
         favouritePokemonsIds.add(pokemonID);
     }
 
-    private void guardPokemonIdDuplicated(PokemonID pokemonID) throws PokemonAlredyExistInFavouritePokemons {
+    private void guardPokemonIdDuplicated(PokemonID pokemonID) throws PokemonAlreadyExistInFavouritePokemonsException {
         if (pokemonExist(pokemonID)) {
-            throw new PokemonAlredyExistInFavouritePokemons();
+            throw new PokemonAlreadyExistInFavouritePokemonsException();
         }
     }
 
-    public void removeFavouritePokemon(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemons {
+    public void removeFavouritePokemon(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemonsException {
         guardPokemonIdExist(pokemonID);
         favouritePokemonsIds.remove(pokemonID);
     }
 
-    private void guardPokemonIdExist(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemons {
+    private void guardPokemonIdExist(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemonsException {
         if (!pokemonExist(pokemonID)) {
-            throw new PokemonNotExistInFavouritePokemons();
+            throw new PokemonNotExistInFavouritePokemonsException();
         }
     }
 

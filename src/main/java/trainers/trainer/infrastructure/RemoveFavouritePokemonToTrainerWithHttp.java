@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import trainers.trainer.application.RemoveFavouritePokemon;
 import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
-import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemons;
-import trainers.trainer.domain.exceptions.TrainerDontExist;
+import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
+import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 @RestController
 public class RemoveFavouritePokemonToTrainerWithHttp {
@@ -21,15 +21,15 @@ public class RemoveFavouritePokemonToTrainerWithHttp {
 
         try {
             removeFavouritePokemon.execute(trainerID,pokemonID);
-        } catch (TrainerDontExist e) {
+        } catch (TrainerDontExistException e) {
             //TODO check HTTP STATUS
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"TrainerDontExist");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"TrainerDontExistException");
         } catch (PokemonIdOutOfRangeException e) {
             //TODO check HTTP STATUS
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"PokemonIdOutOfRangeException");
-        } catch (PokemonNotExistInFavouritePokemons e) {
+        } catch (PokemonNotExistInFavouritePokemonsException e) {
             //TODO check HTTP STATUS
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"PokemonNotExistInFavouritePokemons");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"PokemonNotExistInFavouritePokemonsException");
         }
     }
 

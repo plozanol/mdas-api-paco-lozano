@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import trainers.trainer.application.AddFavouritePokemon;
-import trainers.trainer.domain.exceptions.PokemonAlredyExistInFavouritePokemons;
+import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
 import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
-import trainers.trainer.domain.exceptions.TrainerDontExist;
+import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 @RestController
 public class AddFavouritePokemonToTrainerWithHttp {
@@ -21,9 +21,9 @@ public class AddFavouritePokemonToTrainerWithHttp {
 
         try {
             addFavouritePokemon.execute(trainerID,pokemonID);
-        } catch (TrainerDontExist e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"TrainerDontExist");
-        } catch (PokemonAlredyExistInFavouritePokemons e) {
+        } catch (TrainerDontExistException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"TrainerDontExistException");
+        } catch (PokemonAlreadyExistInFavouritePokemonsException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"PokemonAlreadyExistInFavouritePokemons");
         } catch (PokemonIdOutOfRangeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"PokemonIdOutOfRangeException");

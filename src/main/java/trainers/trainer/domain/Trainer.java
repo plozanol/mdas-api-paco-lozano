@@ -1,7 +1,7 @@
 package trainers.trainer.domain;
 
-import trainers.trainer.domain.exceptions.PokemonAlredyExistInFavouritePokemons;
-import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemons;
+import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
+import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
 
 public class Trainer {
     private final TrainerID ID;
@@ -16,11 +16,11 @@ public class Trainer {
         return ID;
     }
 
-    public void addFavouritePokemon(PokemonID pokemonID) throws PokemonAlredyExistInFavouritePokemons {
+    public void addFavouritePokemon(PokemonID pokemonID) throws PokemonAlreadyExistInFavouritePokemonsException {
         favoritePokemons.addFavouritePokemon(pokemonID);
     }
 
-    public void removeFavouritePokemon(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemons {
+    public void removeFavouritePokemon(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemonsException {
         favoritePokemons.removeFavouritePokemon(pokemonID);
     }
 }
