@@ -17,16 +17,12 @@ public class RemoveFavouritePokemonTest {
 
     @Test
     void shouldPokemonIdOutOfRangeException_whenTrainerDoesNotExist() {
-        try {
-            // GIVEN
-            RemoveFavouritePokemon removeFavouritePokemon = new RemoveFavouritePokemon(trainerRepository);
-            TrainerID ID = new TrainerID("1234");
-            PokemonID pokemonID = new PokemonID(1);
+        // GIVEN
+        RemoveFavouritePokemon removeFavouritePokemon = new RemoveFavouritePokemon(trainerRepository);
+        TrainerID ID = new TrainerID("1234");
+        PokemonID pokemonID = new PokemonID(1);
 
-            // THEN
-            assertThrows(TrainerDontExistException.class, () -> removeFavouritePokemon.execute(ID, pokemonID));
-        } catch (PokemonIdOutOfRangeException e) {
-            throw new RuntimeException(e);
-        }
+        // THEN
+        assertThrows(TrainerDontExistException.class, () -> removeFavouritePokemon.execute(ID, pokemonID));
     }
 }
