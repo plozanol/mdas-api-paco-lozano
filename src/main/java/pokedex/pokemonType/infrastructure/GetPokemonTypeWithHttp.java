@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import pokedex.pokemonType.application.GetPokemonTypes;
 import pokedex.pokemonType.domain.PokemonType;
-import pokedex.pokemonType.domain.PokemonTypeRepositoryConnectionException;
+import pokedex.pokemonType.domain.exceptions.PokemonTypeRepositoryConnectionException;
 import pokedex.pokemonType.domain.PokemonTypes;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
 import pokedex.pokemonType.domain.exceptions.PokemonNotFoundException;

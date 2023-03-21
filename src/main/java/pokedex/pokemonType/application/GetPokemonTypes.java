@@ -1,7 +1,7 @@
 package pokedex.pokemonType.application;
 
 import pokedex.pokemonType.domain.PokemonName;
-import pokedex.pokemonType.domain.PokemonTypeRepositoryConnectionException;
+import pokedex.pokemonType.domain.exceptions.PokemonTypeRepositoryConnectionException;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
 import pokedex.pokemonType.domain.exceptions.PokemonNotFoundException;
 import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
