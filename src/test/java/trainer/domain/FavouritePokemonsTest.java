@@ -68,15 +68,30 @@ public class FavouritePokemonsTest {
 
     @Test
     void shouldBeAbleToDeleteExistingPokemons() {
-        // GIVEN
+        try {
+            // GIVEN
+            PokemonID firstPokemonID = new PokemonID(1);
+            FavouritePokemons favouritePokemons = new FavouritePokemons();
+            // THEN
+            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(firstPokemonID));
+            assertDoesNotThrow(() -> favouritePokemons.removeFavouritePokemon(firstPokemonID));
 
-        // THEN
+
+        } catch (PokemonIdOutOfRangeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
-    void shouldThrowAnExceptionOnDeleteNonExistingPokemon() {
-        // GIVEN
-
-        // THEN
+    void shouldThrowAnException_onDeleteNonExistingPokemon() {
+        try {
+            // GIVEN
+            PokemonID pokemonID = new PokemonID(1);
+            FavouritePokemons favouritePokemons = new FavouritePokemons();
+            // THEN
+            assertThrows(PokemonNotExistInFavouritePokemons.class, () -> favouritePokemons.removeFavouritePokemon(pokemonID));
+        } catch (PokemonIdOutOfRangeException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
