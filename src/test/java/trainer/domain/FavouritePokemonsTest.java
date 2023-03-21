@@ -51,9 +51,19 @@ public class FavouritePokemonsTest {
 
     @Test
     void shouldBeAbleToAddMultiplePokemons() {
-        // GIVEN
+        try {
+            // GIVEN
+            PokemonID firstPokemonID = new PokemonID(1);
+            PokemonID secondPokemonID = new PokemonID(2);
+            FavouritePokemons favouritePokemons = new FavouritePokemons();
+            // THEN
+            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(firstPokemonID));
+            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(secondPokemonID));
 
-        // THEN
+
+        } catch (PokemonIdOutOfRangeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
