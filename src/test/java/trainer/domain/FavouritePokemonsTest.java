@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pokedex.pokemonType.domain.PokemonType;
 import pokedex.pokemonType.domain.PokemonTypeCollection;
+import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 import trainers.trainer.domain.FavouritePokemons;
 import trainers.trainer.domain.PokemonID;
 import trainers.trainer.domain.exceptions.PokemonAlredyExistInFavouritePokemons;
@@ -16,6 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 public class FavouritePokemonsTest {
@@ -35,29 +37,61 @@ public class FavouritePokemonsTest {
 
     @Test
     void shouldThrowException_whenAddingExistingPokemon() {
-        // GIVEN
-
-        // THEN
+        try {
+            // GIVEN
+            PokemonID pokemonID = new PokemonID(1);
+            FavouritePokemons favouritePokemons = new FavouritePokemons();
+            // THEN
+            favouritePokemons.addFavouritePokemon(pokemonID);
+            assertThrows(PokemonAlredyExistInFavouritePokemons.class, () -> favouritePokemons.addFavouritePokemon(pokemonID));
+        } catch (PokemonIdOutOfRangeException | PokemonAlredyExistInFavouritePokemons e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
     void shouldBeAbleToAddMultiplePokemons() {
-        // GIVEN
+        try {
+            // GIVEN
+            PokemonID firstPokemonID = new PokemonID(1);
+            PokemonID secondPokemonID = new PokemonID(2);
+            FavouritePokemons favouritePokemons = new FavouritePokemons();
+            // THEN
+            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(firstPokemonID));
+            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(secondPokemonID));
 
-        // THEN
+
+        } catch (PokemonIdOutOfRangeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
     void shouldBeAbleToDeleteExistingPokemons() {
-        // GIVEN
+        try {
+            // GIVEN
+            PokemonID firstPokemonID = new PokemonID(1);
+            FavouritePokemons favouritePokemons = new FavouritePokemons();
+            // THEN
+            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(firstPokemonID));
+            assertDoesNotThrow(() -> favouritePokemons.removeFavouritePokemon(firstPokemonID));
 
-        // THEN
+
+        } catch (PokemonIdOutOfRangeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
-    void shouldThrowAnExceptionOnDeleteNonExistingPokemon() {
-        // GIVEN
-
-        // THEN
+    void shouldThrowAnException_onDeleteNonExistingPokemon() {
+        try {
+            // GIVEN
+            PokemonID pokemonID = new PokemonID(1);
+            FavouritePokemons favouritePokemons = new FavouritePokemons();
+            // THEN
+            assertThrows(PokemonNotExistInFavouritePokemons.class, () -> favouritePokemons.removeFavouritePokemon(pokemonID));
+        } catch (PokemonIdOutOfRangeException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
