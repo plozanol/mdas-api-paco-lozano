@@ -8,7 +8,9 @@ import pokedex.pokemonType.domain.PokemonTypeCollection;
 import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 import trainers.trainer.domain.FavouritePokemons;
 import trainers.trainer.domain.PokemonID;
+import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
 import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
+import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -37,8 +39,8 @@ public class FavouritePokemonsTest {
             FavouritePokemons favouritePokemons = new FavouritePokemons();
             // THEN
             favouritePokemons.addFavouritePokemon(pokemonID);
-            assertThrows(PokemonAlredyExistInFavouritePokemons.class, () -> favouritePokemons.addFavouritePokemon(pokemonID));
-        } catch (PokemonIdOutOfRangeException | PokemonAlredyExistInFavouritePokemons e) {
+            assertThrows(PokemonAlreadyExistInFavouritePokemonsException.class, () -> favouritePokemons.addFavouritePokemon(pokemonID));
+        } catch (PokemonIdOutOfRangeException | PokemonAlreadyExistInFavouritePokemonsException e) {
             throw new RuntimeException(e);
         }
     }
@@ -83,7 +85,7 @@ public class FavouritePokemonsTest {
             PokemonID pokemonID = new PokemonID(1);
             FavouritePokemons favouritePokemons = new FavouritePokemons();
             // THEN
-            assertThrows(PokemonNotExistInFavouritePokemons.class, () -> favouritePokemons.removeFavouritePokemon(pokemonID));
+            assertThrows(PokemonNotExistInFavouritePokemonsException.class, () -> favouritePokemons.removeFavouritePokemon(pokemonID));
         } catch (PokemonIdOutOfRangeException e) {
             throw new RuntimeException(e);
         }
