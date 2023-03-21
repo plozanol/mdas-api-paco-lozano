@@ -19,75 +19,55 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class FavouritePokemonsTest {
     @Test
     void shouldBeAbleToAddPokemonToAnEmptyCollection() {
-        try {
-            // GIVEN
-            PokemonID pokemonID = new PokemonID(1);
-            FavouritePokemons favouritePokemons = new FavouritePokemons();
-            // THEN
-            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(pokemonID));
+        // GIVEN
+        PokemonID pokemonID = new PokemonID(1);
+        FavouritePokemons favouritePokemons = new FavouritePokemons();
 
-        } catch (PokemonIdOutOfRangeException e) {
-            throw new RuntimeException(e);
-        }
+        // THEN
+        assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(pokemonID));
     }
 
     @Test
     void shouldThrowException_whenAddingExistingPokemon() {
-        try {
-            // GIVEN
-            PokemonID pokemonID = new PokemonID(1);
-            FavouritePokemons favouritePokemons = new FavouritePokemons();
-            // THEN
-            favouritePokemons.addFavouritePokemon(pokemonID);
-            assertThrows(PokemonAlreadyExistInFavouritePokemonsException.class, () -> favouritePokemons.addFavouritePokemon(pokemonID));
-        } catch (PokemonIdOutOfRangeException | PokemonAlreadyExistInFavouritePokemonsException e) {
-            throw new RuntimeException(e);
-        }
+        // GIVEN
+        PokemonID pokemonID = new PokemonID(1);
+        FavouritePokemons favouritePokemons = new FavouritePokemons();
+
+        // THEN
+        favouritePokemons.addFavouritePokemon(pokemonID);
+        assertThrows(PokemonAlreadyExistInFavouritePokemonsException.class, () -> favouritePokemons.addFavouritePokemon(pokemonID));
     }
 
     @Test
     void shouldBeAbleToAddMultiplePokemons() {
-        try {
-            // GIVEN
-            PokemonID firstPokemonID = new PokemonID(1);
-            PokemonID secondPokemonID = new PokemonID(2);
-            FavouritePokemons favouritePokemons = new FavouritePokemons();
-            // THEN
-            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(firstPokemonID));
-            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(secondPokemonID));
+        // GIVEN
+        PokemonID firstPokemonID = new PokemonID(1);
+        PokemonID secondPokemonID = new PokemonID(2);
+        FavouritePokemons favouritePokemons = new FavouritePokemons();
 
-
-        } catch (PokemonIdOutOfRangeException e) {
-            throw new RuntimeException(e);
-        }
+        // THEN
+        assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(firstPokemonID));
+        assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(secondPokemonID));
     }
 
     @Test
     void shouldBeAbleToDeleteExistingPokemons() {
-        try {
-            // GIVEN
-            PokemonID firstPokemonID = new PokemonID(1);
-            FavouritePokemons favouritePokemons = new FavouritePokemons();
-            // THEN
-            assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(firstPokemonID));
-            assertDoesNotThrow(() -> favouritePokemons.removeFavouritePokemon(firstPokemonID));
+        // GIVEN
+        PokemonID firstPokemonID = new PokemonID(1);
+        FavouritePokemons favouritePokemons = new FavouritePokemons();
 
-
-        } catch (PokemonIdOutOfRangeException e) {
-            throw new RuntimeException(e);
-        }
+        // THEN
+        assertDoesNotThrow(() -> favouritePokemons.addFavouritePokemon(firstPokemonID));
+        assertDoesNotThrow(() -> favouritePokemons.removeFavouritePokemon(firstPokemonID));
     }
 
     @Test
     void shouldThrowAnException_onDeleteNonExistingPokemon() {
-        try {
-            // GIVEN
-            PokemonID pokemonID = new PokemonID(1);
-            FavouritePokemons favouritePokemons = new FavouritePokemons();
-            // THEN
-            assertThrows(PokemonNotExistInFavouritePokemonsException.class, () -> favouritePokemons.removeFavouritePokemon(pokemonID));
-        } catch (PokemonIdOutOfRangeException e) {
-            throw new RuntimeException(e);
-        }
+        // GIVEN
+        PokemonID pokemonID = new PokemonID(1);
+        FavouritePokemons favouritePokemons = new FavouritePokemons();
+
+        // THEN
+        assertThrows(PokemonNotExistInFavouritePokemonsException.class, () -> favouritePokemons.removeFavouritePokemon(pokemonID));
     }
 }
