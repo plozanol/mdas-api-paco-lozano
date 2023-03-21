@@ -6,7 +6,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import trainers.trainer.domain.*;
 import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
-import trainers.trainer.domain.exceptions.TrainerDontExist;
+import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -24,7 +24,7 @@ public class RemoveFavouritePokemonTest {
             PokemonID pokemonID = new PokemonID(1);
 
             // THEN
-            assertThrows(TrainerDontExist.class, () -> removeFavouritePokemon.execute(ID, pokemonID));
+            assertThrows(TrainerDontExistException.class, () -> removeFavouritePokemon.execute(ID, pokemonID));
         } catch (PokemonIdOutOfRangeException e) {
             throw new RuntimeException(e);
         }

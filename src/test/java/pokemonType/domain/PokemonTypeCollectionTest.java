@@ -12,21 +12,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PokemonTypeCollectionTest {
     @Test
     void shouldThrowPokemonWithoutTypesException_whenTypesIsEmptyArray() {
-        // GIVEN
-        PokemonType[] emptyPokemonTypes = new ArrayList<PokemonType>().toArray(new PokemonType[0]);
-
-        // THEN
-        assertThrows(PokemonWithoutTypesException.class, () -> new PokemonTypeCollection(new PokemonType[] {}));
-        assertThrows(PokemonWithoutTypesException.class, () -> new PokemonTypeCollection(emptyPokemonTypes));
-
+        assertThrows(PokemonWithoutTypesException.class, () -> new PokemonTypeCollection(new PokemonType[0]));
     }
 
     @Test
     void canCreateAPokemonTypeWithOneType() {
         // GIVEN
-        PokemonType[] emptyPokemonTypes = new PokemonType[]{new PokemonType("hi")};
+        PokemonType[] pokemonTypes = new PokemonType[]{new PokemonType("hi")};
 
         // THEN
-        assertDoesNotThrow(() -> new PokemonTypeCollection(emptyPokemonTypes));
+        assertDoesNotThrow(() -> new PokemonTypeCollection(pokemonTypes));
     }
 }

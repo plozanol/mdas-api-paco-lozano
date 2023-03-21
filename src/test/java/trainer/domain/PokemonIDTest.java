@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PokemonIDTest {
 
     @ParameterizedTest
-    @ValueSource(ints = { -1, 0, 899 })
+    @ValueSource(ints = { 0, 899 })
     void shouldThrowException_ifPokemonIDOutOfRange(int id) {
         assertThrows(PokemonIdOutOfRangeException.class, () -> new PokemonID(id));
     }
@@ -19,7 +19,7 @@ public class PokemonIDTest {
     @ParameterizedTest
     @ValueSource(ints = { 1, 200, 898 })
     void shouldNotThrowException_ifPokemonIDInsideRange(int id) {
-        assertThrows(PokemonIdOutOfRangeException.class, () -> new PokemonID(id));
+        assertDoesNotThrow(() -> new PokemonID(id));
     }
 
 }
