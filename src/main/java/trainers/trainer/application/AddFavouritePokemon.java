@@ -8,11 +8,11 @@ import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
 import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 public class AddFavouritePokemon {
+    private final TrainerRepository trainerRepository;
+
     public AddFavouritePokemon(TrainerRepository trainerRepository) {
         this.trainerRepository = trainerRepository;
     }
-
-    private final TrainerRepository trainerRepository;
 
     public void execute(String trainerId, int pokemonID) throws PokemonIdOutOfRangeException, TrainerDontExistException, PokemonAlreadyExistInFavouritePokemonsException {
         var addFavouritePokemon = new trainers.trainer.domain.AddFavouritePokemon(trainerRepository);
