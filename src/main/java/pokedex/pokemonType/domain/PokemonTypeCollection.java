@@ -5,9 +5,9 @@ import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 public class PokemonTypeCollection {
     private PokemonType[] types;
 
-    public PokemonTypes(PokemonType... types) throws PokemonWithoutTypesException {
+    public PokemonTypeCollection(PokemonType... types) throws PokemonWithoutTypesException {
+        guardNumberPokemonTypes(types);
         this.types = types;
-        guardNumberPokemonTypes();
     }
 
     private void guardNumberPokemonTypes(PokemonType... types) throws PokemonWithoutTypesException {

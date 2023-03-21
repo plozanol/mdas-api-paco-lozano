@@ -7,6 +7,7 @@ import trainers.trainer.domain.exceptions.TrainerAlredyCreated;
 
 public class CreateTrainer {
     private final TrainerRepository trainerRepository;
+
     public CreateTrainer(TrainerRepository trainerRepository){
         this.trainerRepository = trainerRepository;
     }

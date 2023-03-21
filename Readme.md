@@ -1,5 +1,6 @@
 Prerequisites:
 - Java SDK 17
+- Maven
 
 There are to ways to execute this project, via terminal commands and an http request.
   
