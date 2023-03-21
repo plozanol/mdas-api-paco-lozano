@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pokedex.pokemonType.application.GetPokemonTypes;
 import pokedex.pokemonType.domain.PokemonType;
 import pokedex.pokemonType.domain.exceptions.PokemonTypeRepositoryConnectionException;
-import pokedex.pokemonType.domain.PokemonTypes;
+import pokedex.pokemonType.domain.PokemonTypeCollection;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
 import pokedex.pokemonType.domain.exceptions.PokemonNotFoundException;
 import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
@@ -22,8 +22,8 @@ public class GetPokemonTypeWithHttp {
             System.out.println("No correct input");
         }
         try {
-            PokemonTypes pokemonTypes = getPokemonType.execute(pokemonName);
-            String jsonFormatTypes = transformToJSON(pokemonTypes);
+            PokemonTypeCollection pokemonTypeCollection = getPokemonType.execute(pokemonName);
+            String jsonFormatTypes = transformToJSON(pokemonTypeCollection);
             return jsonFormatTypes;
         } catch (PokemonNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
@@ -34,9 +34,9 @@ public class GetPokemonTypeWithHttp {
         }
     }
 
-    private static String transformToJSON(PokemonTypes pokemonTypes) {
+    private static String transformToJSON(PokemonTypeCollection pokemonTypeCollection) {
         var result = "[";
-        for (PokemonType type : pokemonTypes.getTypes()) {
+        for (PokemonType type : pokemonTypeCollection.getTypes()) {
             result += "\"";
             result += type;
             result += "\",";

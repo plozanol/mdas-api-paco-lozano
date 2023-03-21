@@ -6,5 +6,5 @@ import pokedex.pokemonType.domain.exceptions.PokemonTypeRepositoryConnectionExce
 import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 
 public interface PokemonTypeRepository {
-    PokemonTypes get(PokemonName pokemonName) throws PokemonWithoutTypesException, PokemonTypeRepositoryConnectionException, EmptyPokemonNameParameterException, PokemonNotFoundException;
+    PokemonTypeCollection get(PokemonName pokemonName) throws PokemonWithoutTypesException, PokemonTypeRepositoryConnectionException, EmptyPokemonNameParameterException, PokemonNotFoundException;
 }

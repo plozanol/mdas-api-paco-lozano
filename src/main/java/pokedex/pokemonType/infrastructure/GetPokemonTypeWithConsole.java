@@ -2,7 +2,7 @@ package pokedex.pokemonType.infrastructure;
 
 import pokedex.pokemonType.application.GetPokemonTypes;
 import pokedex.pokemonType.domain.exceptions.PokemonTypeRepositoryConnectionException;
-import pokedex.pokemonType.domain.PokemonTypes;
+import pokedex.pokemonType.domain.PokemonTypeCollection;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
 import pokedex.pokemonType.domain.exceptions.PokemonNotFoundException;
 import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
@@ -26,7 +26,7 @@ public class GetPokemonTypeWithConsole {
         }
     }
 
-    private static String getCommaSeparatedTypes(PokemonTypes types) {
+    private static String getCommaSeparatedTypes(PokemonTypeCollection types) {
         String jsonFormatTypes = Arrays.toString(types.getTypes());
         var commaSeparatedTypes = jsonFormatTypes.substring(1, jsonFormatTypes.length() - 1);
         return commaSeparatedTypes;

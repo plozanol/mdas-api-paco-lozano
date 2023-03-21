@@ -8,11 +8,11 @@ import java.util.Set;
 
 public class FavouritePokemons {
 
+    Set<PokemonID> favouritePokemonsIds;
+
     public FavouritePokemons() {
         favouritePokemonsIds = new HashSet<>();
     }
-
-    Set<PokemonID> favouritePokemonsIds;
 
     public void addFavouritePokemon(PokemonID pokemonID) throws PokemonAlredyExistInFavouritePokemons {
         guardPokemonIdDuplicated(pokemonID);

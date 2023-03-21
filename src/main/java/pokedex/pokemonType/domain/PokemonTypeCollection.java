@@ -2,9 +2,7 @@ package pokedex.pokemonType.domain;
 
 import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 
-import java.util.Arrays;
-
-public class PokemonTypes {
+public class PokemonTypeCollection {
     private PokemonType[] types;
 
     public PokemonTypes(PokemonType... types) throws PokemonWithoutTypesException {
@@ -12,8 +10,8 @@ public class PokemonTypes {
         guardNumberPokemonTypes();
     }
 
-    private void guardNumberPokemonTypes() throws PokemonWithoutTypesException {
-        if (types.length < 1) {
+    private void guardNumberPokemonTypes(PokemonType... types) throws PokemonWithoutTypesException {
+        if (types == null || types.length < 1) {
             throw new PokemonWithoutTypesException();
         }
     }
