@@ -1,15 +1,9 @@
-package trainer.domain;
+package trainers.trainer.domain;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pokedex.pokemonType.domain.PokemonType;
-import pokedex.pokemonType.domain.PokemonTypeCollection;
-import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
-import trainers.trainer.domain.FavouritePokemons;
-import trainers.trainer.domain.PokemonID;
 import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
-import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
 import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

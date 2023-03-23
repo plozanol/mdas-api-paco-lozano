@@ -1,18 +1,13 @@
-package pokemonType.application;
+package pokedex.pokemonType.application;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import pokedex.pokemonType.application.GetPokemonTypes;
 import pokedex.pokemonType.domain.PokemonName;
 import pokedex.pokemonType.domain.PokemonTypeCollection;
 import pokedex.pokemonType.domain.PokemonTypeRepository;
-import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
-import pokedex.pokemonType.domain.exceptions.PokemonNotFoundException;
-import pokedex.pokemonType.domain.exceptions.PokemonTypeRepositoryConnectionException;
-import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;

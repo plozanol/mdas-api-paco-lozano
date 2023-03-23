@@ -1,12 +1,11 @@
-package trainer.domain;
+package trainers.trainer.domain;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import trainers.trainer.domain.PokemonID;
 import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PokemonIDTest {
 

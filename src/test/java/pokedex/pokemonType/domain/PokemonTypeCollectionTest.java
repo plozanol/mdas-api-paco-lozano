@@ -1,13 +1,10 @@
-package pokemonType.domain;
+package pokedex.pokemonType.domain;
 
 import org.junit.jupiter.api.Test;
-import pokedex.pokemonType.domain.PokemonType;
-import pokedex.pokemonType.domain.PokemonTypeCollection;
 import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PokemonTypeCollectionTest {
     @Test
