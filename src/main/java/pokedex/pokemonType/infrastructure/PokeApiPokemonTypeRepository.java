@@ -17,7 +17,14 @@ import java.util.List;
 
 public class PokeApiPokemonTypeRepository implements PokemonTypeRepository {
 
-    private static final String apiUrl = "https://pokeapi.co/api/v2/pokemon/";
+    private String apiUrl = "https://pokeapi.co/api/v2/pokemon/";
+
+    PokeApiPokemonTypeRepository(){
+
+    }
+    PokeApiPokemonTypeRepository(String apiUrl){
+        this.apiUrl = apiUrl;
+    }
 
     public PokemonTypeCollection get(PokemonName name) throws PokemonWithoutTypesException, PokemonTypeRepositoryConnectionException, EmptyPokemonNameParameterException, PokemonNotFoundException {
         guardPokemonNameIsNotEmpty(name.toString());

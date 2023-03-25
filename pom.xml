@@ -81,6 +81,7 @@
                 <configuration>
                     <includes>
                         <include>**/*Feature.java</include>
+                        <include>**/*IT.java</include>
                     </includes>
                     <systemPropertyVariables>
                         <restapi.baseurl>http://localhost:8080/</restapi.baseurl>
