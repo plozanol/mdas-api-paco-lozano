@@ -12,9 +12,9 @@ without the need of installing maven.
 You have the linux executable(mvnw) and the windows executable(mvnw.cmd). Just check you have execute permission set on these files to be able to run it.
 In the following sections you will see example commands made with the linux maven wrapper.
 
-## Unit Testing
+## Testing
 ```
-./mvnw clean test
+./mvnw clean verify
 ```
 
 ## How to run
@@ -70,6 +70,12 @@ wget -q -S -O - --header='user_id:99' localhost:8080/AddFavouritePokemonToTraine
 ```
 
 ### /RemoveFavouritePokemonToTrainer/{pokemonID}
+Note: you need to inject an existing user_id custom header, to be able to remove a FavoritePokemon from a Trainer
+```
+wget -q -S -O - --header='user_id:99' localhost:8080/RemoveFavouritePokemonToTrainer/1
+```
+
+### /getPokemonDetailsByID/{pokemonID}
 Note: you need to inject an existing user_id custom header, to be able to remove a FavoritePokemon from a Trainer
 ```
 wget -q -S -O - --header='user_id:99' localhost:8080/RemoveFavouritePokemonToTrainer/1
