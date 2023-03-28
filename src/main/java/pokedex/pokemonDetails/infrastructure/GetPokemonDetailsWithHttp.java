@@ -30,12 +30,12 @@ public class GetPokemonDetailsWithHttp {
     private static String transformToJSON(PokemonDetail pokemonTypeCollection) {
         return String.format("""
                         {
-                            id:%d,
-                            name:%s,
-                            height:%G,
-                            weight:%G
+                            "id":"%d",
+                            "name":"%s",
+                            "height":"%G",
+                            "weight":"%G"
                         }
-                        """,
+                        """, 
                 pokemonTypeCollection.ID().ID(),
                 pokemonTypeCollection.name().toString(),
                 pokemonTypeCollection.height().height(),
