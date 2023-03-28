@@ -10,9 +10,9 @@ import trainers.trainer.domain.PokemonID;
 import trainers.trainer.domain.Trainer;
 import trainers.trainer.domain.TrainerID;
 import trainers.trainer.domain.TrainerRepository;
+import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @SpringBootTest(classes = MdasSpringbootAplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -26,42 +26,46 @@ class TrainerWebTest {
 
     @Test
     void shouldCreateTrainer_AndAddFavouritePoken_AndRemoveFavouritePokemon() {
+        try {
+            // GIVEN
+            final int POKEMON_ID = 111;
+            final String TRAINER_ID = "999";
 
-        // GIVEN
-        final int POKEMON_ID = 111;
-        final String TRAINER_ID = "999";
+            this.webTestClient
+                    .get()
+                    .uri("/CreateTrainer/" + TRAINER_ID)
+                    .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
+                    .exchange()
+                    .expectStatus()
+                    .is2xxSuccessful();
 
-        this.webTestClient
-                .get()
-                .uri("/CreateTrainer/" + TRAINER_ID)
-                .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
-                .exchange()
-                .expectStatus()
-                .is2xxSuccessful();
+            this.webTestClient
+                    .get()
+                    .uri("/AddFavouritePokemonToTrainer/" + POKEMON_ID)
+                    .header("user_id", TRAINER_ID)
+                    .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
+                    .exchange()
+                    .expectStatus()
+                    .is2xxSuccessful();
 
-        this.webTestClient
-                .get()
-                .uri("/AddFavouritePokemonToTrainer/" + POKEMON_ID)
-                .header("user_id", TRAINER_ID)
-                .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
-                .exchange()
-                .expectStatus()
-                .is2xxSuccessful();
+            Trainer trainer = trainerRepository.get(new TrainerID(TRAINER_ID));
 
-        Trainer trainer = trainerRepository.get(new TrainerID(TRAINER_ID));
-        assertTrue(trainer.hasFavouritePokemon(new PokemonID(POKEMON_ID)));
+            assertTrue(trainer.hasFavouritePokemon(new PokemonID(POKEMON_ID)));
 
-        this.webTestClient
-                .get()
-                .uri("/RemoveFavouritePokemonToTrainer/" + POKEMON_ID)
-                .header("user_id", TRAINER_ID)
-                .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
-                .exchange()
-                .expectStatus()
-                .is2xxSuccessful();
 
-        assertFalse(trainer.hasFavouritePokemon(new PokemonID(POKEMON_ID)));
+            this.webTestClient
+                    .get()
+                    .uri("/RemoveFavouritePokemonToTrainer/" + POKEMON_ID)
+                    .header("user_id", TRAINER_ID)
+                    .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
+                    .exchange()
+                    .expectStatus()
+                    .is2xxSuccessful();
 
+            assertFalse(trainer.hasFavouritePokemon(new PokemonID(POKEMON_ID)));
+        } catch (PokemonIdOutOfRangeException e) {
+            fail();
+        }
     }
 
     @Test
