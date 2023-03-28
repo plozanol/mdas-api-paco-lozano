@@ -7,6 +7,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import trainers.trainer.domain.exceptions.TrainerAlreadyCreatedException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -17,14 +18,18 @@ public class TrainerCreatorTest {
     private TrainerRepository trainerRepository;
 
     @Test
-    void trainerShouldBeSavedOnExecute() {
+    void trainerShouldBeSavedOnExecute() throws TrainerAlreadyCreatedException {
         // GIVEN
         TrainerID trainerID = new TrainerID("some-id");
         TrainerCreator trainerCreator = new TrainerCreator(trainerRepository);
         doNothing().when(trainerRepository).create(any(Trainer.class));
 
         // WHEN
-        trainerCreator.execute(trainerID);
+        try {
+            trainerCreator.execute(trainerID);
+        } catch (TrainerAlreadyCreatedException e) {
+            fail();
+        }
 
         // THEN
         verify(trainerRepository, times(1)).create(any(Trainer.class));

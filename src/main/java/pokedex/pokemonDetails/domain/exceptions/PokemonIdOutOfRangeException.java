@@ -1,4 +1,4 @@
-package trainers.trainer.domain.exceptions;
+package pokedex.pokemonDetails.domain.exceptions;
 
 public class PokemonIdOutOfRangeException extends Exception {
 }

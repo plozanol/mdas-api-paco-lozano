@@ -1,4 +1,4 @@
 package trainers.trainer.domain.exceptions;
 
-public class PokemonAlreadyExistInFavouritePokemonsException extends IllegalArgumentException {
+public class PokemonAlreadyExistInFavouritePokemonsException extends Exception {
 }
