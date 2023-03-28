@@ -1,5 +1,6 @@
 package trainers.trainer.infrastructure;
 
+import org.springframework.stereotype.Repository;
 import trainers.trainer.domain.Trainer;
 import trainers.trainer.domain.TrainerID;
 import trainers.trainer.domain.TrainerRepository;
@@ -7,6 +8,8 @@ import trainers.trainer.domain.TrainerRepository;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Repository
 public class InMemoryTrainerRepository implements TrainerRepository {
     private static final Map<String,Trainer> memoryOfTrainers = new HashMap<>();
     @Override
