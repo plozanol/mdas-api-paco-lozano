@@ -23,4 +23,9 @@ public class Trainer {
     public void removeFavouritePokemon(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemonsException {
         favoritePokemons.removeFavouritePokemon(pokemonID);
     }
+
+    public boolean hasFavouritePokemon(PokemonID pokemonID) {
+        return favoritePokemons.pokemonExist(pokemonID);
+    }
+
 }

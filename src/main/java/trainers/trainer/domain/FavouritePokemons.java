@@ -36,7 +36,7 @@ public class FavouritePokemons {
         }
     }
 
-    private boolean pokemonExist(PokemonID pokemonID) {
+    public boolean pokemonExist(PokemonID pokemonID) {
         return favouritePokemonsIds.contains(pokemonID);
     }
 }
