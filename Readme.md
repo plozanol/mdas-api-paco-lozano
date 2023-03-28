@@ -76,7 +76,6 @@ wget -q -S -O - --header='user_id:99' localhost:8080/RemoveFavouritePokemonToTra
 ```
 
 ### /getPokemonDetailsByID/{pokemonID}
-Note: you need to inject an existing user_id custom header, to be able to remove a FavoritePokemon from a Trainer
 ```
 wget -O- localhost:8080/getPokemonDetailsByID/1
 ```
