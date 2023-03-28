@@ -8,6 +8,7 @@ import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
 import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @ExtendWith(MockitoExtension.class)
 public class AddFavouritePokemonTest {
@@ -21,9 +22,14 @@ public class AddFavouritePokemonTest {
         // GIVEN
         AddFavouritePokemon addFavouritePokemon = new AddFavouritePokemon(trainerRepository);
         TrainerID ID = new TrainerID("1234");
-        PokemonID pokemonID = new PokemonID(1);
+        try {
+            PokemonID pokemonID = new PokemonID(1);
+            // THEN
+            assertThrows(TrainerDontExistException.class, () -> addFavouritePokemon.execute(ID, pokemonID));
+        } catch (PokemonIdOutOfRangeException e) {
+            fail();
+        }
 
-        // THEN
-        assertThrows(TrainerDontExistException.class, () -> addFavouritePokemon.execute(ID, pokemonID));
+
     }
 }
