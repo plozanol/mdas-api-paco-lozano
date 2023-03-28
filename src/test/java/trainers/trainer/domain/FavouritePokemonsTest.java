@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
+import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
 import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 public class FavouritePokemonsTest {
     @Test
-    void shouldBeAbleToAddPokemonToAnEmptyCollection() {
+    void shouldBeAbleToAddPokemonToAnEmptyCollection() throws PokemonIdOutOfRangeException {
         // GIVEN
         PokemonID pokemonID = new PokemonID(1);
         FavouritePokemons favouritePokemons = new FavouritePokemons();
@@ -22,7 +23,7 @@ public class FavouritePokemonsTest {
     }
 
     @Test
-    void shouldThrowException_whenAddingExistingPokemon() {
+    void shouldThrowException_whenAddingExistingPokemon() throws PokemonIdOutOfRangeException, PokemonAlreadyExistInFavouritePokemonsException {
         // GIVEN
         PokemonID pokemonID = new PokemonID(1);
         FavouritePokemons favouritePokemons = new FavouritePokemons();
@@ -33,7 +34,7 @@ public class FavouritePokemonsTest {
     }
 
     @Test
-    void shouldBeAbleToAddMultiplePokemons() {
+    void shouldBeAbleToAddMultiplePokemons() throws PokemonIdOutOfRangeException {
         // GIVEN
         PokemonID firstPokemonID = new PokemonID(1);
         PokemonID secondPokemonID = new PokemonID(2);
@@ -45,7 +46,7 @@ public class FavouritePokemonsTest {
     }
 
     @Test
-    void shouldBeAbleToDeleteExistingPokemons() {
+    void shouldBeAbleToDeleteExistingPokemons() throws PokemonIdOutOfRangeException {
         // GIVEN
         PokemonID firstPokemonID = new PokemonID(1);
         FavouritePokemons favouritePokemons = new FavouritePokemons();
@@ -56,7 +57,7 @@ public class FavouritePokemonsTest {
     }
 
     @Test
-    void shouldThrowAnException_onDeleteNonExistingPokemon() {
+    void shouldThrowAnException_onDeleteNonExistingPokemon() throws PokemonIdOutOfRangeException {
         // GIVEN
         PokemonID pokemonID = new PokemonID(1);
         FavouritePokemons favouritePokemons = new FavouritePokemons();

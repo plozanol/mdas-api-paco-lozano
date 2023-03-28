@@ -17,7 +17,7 @@ public class TrainerCreatorTest {
     private TrainerRepository trainerRepository;
 
     @Test
-    void trainerShouldBeSavedOnExecute() {
+    void trainerShouldBeSavedOnExecute() throws TrainerAlreadyCreatedException {
         // GIVEN
         TrainerID trainerID = new TrainerID("some-id");
         TrainerCreator trainerCreator = new TrainerCreator(trainerRepository);
