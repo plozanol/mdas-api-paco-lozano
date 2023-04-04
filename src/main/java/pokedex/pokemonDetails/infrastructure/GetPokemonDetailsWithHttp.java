@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pokedex.pokemonDetails.application.GetPokemonDetails;
 import pokedex.pokemonDetails.domain.PokemonDetail;
 import pokedex.pokemonDetails.domain.exceptions.*;
-import pokedex.pokemonDetails.infrastructure.exceptions.NotNumericPokemonIdException;
+import shared.infrastructure.exceptions.NotNumericPokemonIdException;
 
 @RestController
 public class GetPokemonDetailsWithHttp {

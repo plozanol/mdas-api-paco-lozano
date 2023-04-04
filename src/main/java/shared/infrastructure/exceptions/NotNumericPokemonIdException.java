@@ -1,4 +1,4 @@
-package trainers.trainer.infrastructure.exceptions;
+package shared.infrastructure.exceptions;
 
 public class NotNumericPokemonIdException extends IllegalArgumentException {
 

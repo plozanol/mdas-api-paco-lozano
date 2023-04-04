@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import pokedex.pokemonDetails.infrastructure.exceptions.NotNumericPokemonIdException;
+import shared.infrastructure.exceptions.NotNumericPokemonIdException;
 import trainers.trainer.application.AddFavouritePokemon;
 import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
 import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;

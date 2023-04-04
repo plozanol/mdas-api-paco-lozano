@@ -3,7 +3,7 @@ package trainers.trainer.infrastructure;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import pokedex.pokemonDetails.infrastructure.exceptions.NotNumericPokemonIdException;
+import shared.infrastructure.exceptions.NotNumericPokemonIdException;
 import trainers.trainer.application.RemoveFavouritePokemon;
 import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
 import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
