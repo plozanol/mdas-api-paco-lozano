@@ -2,7 +2,6 @@ package trainers.trainer.domain;
 
 import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
 import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
-import trainers.trainer.shared.DomainEvent;
 
 import java.util.HashSet;
 import java.util.Set;

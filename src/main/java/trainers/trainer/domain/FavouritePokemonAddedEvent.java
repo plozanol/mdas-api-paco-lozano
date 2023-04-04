@@ -1,15 +1,16 @@
 package trainers.trainer.domain;
 
-import trainers.trainer.shared.DomainEvent;
+import shared.DomainEvent;
 
 public class FavouritePokemonAddedEvent extends DomainEvent {
-    private PokemonID pokemonID;
+    private int pokemonID;
 
-    public FavouritePokemonAddedEvent(PokemonID pokemonID) {
-        super(pokemonID.ID());
-        this.pokemonID = pokemonID;
+    public FavouritePokemonAddedEvent(int pokemonID) {
+        super(pokemonID);
     }
-
+    public int getPokemonID() {
+        return pokemonID;
+    }
     @Override
     public String type() {
         return "favouritePokemon.added";

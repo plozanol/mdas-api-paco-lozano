@@ -2,7 +2,7 @@ package trainers.trainer.domain;
 
 import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
 import trainers.trainer.domain.exceptions.TrainerDontExistException;
-import trainers.trainer.shared.DomainEvent;
+import shared.DomainEvent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +20,7 @@ public class AddFavouritePokemon {
         trainerExistGuard(ID);
         Trainer trainer = trainerRepository.get(ID);
         trainer.addFavouritePokemon(pokemonID);
-        this.raise(new FavouritePokemonAddedEvent(pokemonID));
+        this.raise(new FavouritePokemonAddedEvent(pokemonID.ID()));
         trainerRepository.update(trainer);
     }
     private void raise(DomainEvent favouritePokemonAddedEvent) {

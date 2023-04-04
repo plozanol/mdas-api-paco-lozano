@@ -1,4 +1,4 @@
-package trainers.trainer.shared;
+package shared;
 
 
 import java.sql.Timestamp;

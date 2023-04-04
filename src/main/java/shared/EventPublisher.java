@@ -1,6 +1,5 @@
-package trainers.trainer.shared;
+package shared;
 
-import java.util.List;
 import java.util.Set;
 
 public interface EventPublisher {
