@@ -35,16 +35,13 @@ public class GetPokemonTypeWithHttp {
     }
 
     private static String transformToJSON(PokemonTypeCollection pokemonTypeCollection) {
-        var result = "[";
+        var result =  new StringBuilder("[");
         for (PokemonType type : pokemonTypeCollection.getTypes()) {
-            result += "\"";
-            result += type;
-            result += "\",";
+            result.append(String.format("\"%s\",", type));
         }
-        result = result.substring(0,result.length()-1);
-        result += "]";
-
-        return result;
+        result.deleteCharAt(result.length()-1);
+        result.append("]");
+        return result.toString();
     }
 }
 
