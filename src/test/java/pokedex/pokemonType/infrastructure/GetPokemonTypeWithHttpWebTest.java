@@ -24,7 +24,7 @@ class GetPokemonTypeWithHttpWebTest {
 
         this.webTestClient
             .get()
-            .uri("/getPokemonTypesByName?pokemonName=" + POKEMON_NAME)
+            .uri("/get-pokemon-types-by-name?pokemonName=" + POKEMON_NAME)
             .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
             .exchange()
             .expectStatus()

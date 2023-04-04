@@ -12,7 +12,7 @@ import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 @RestController
 public class AddFavouritePokemonToTrainerWithHttp {
-    @GetMapping("AddFavouritePokemonToTrainer")
+    @GetMapping("add-favourite-pokemon-to-trainer")
     public ResponseEntity<String> AddFavouritePokemonToTrainer(@RequestHeader("user_id") String trainerID, @RequestParam(name="pokemonId") String stringPokemonId) {
         blankIdGuard(trainerID);
         var pokemonID = parsePokemonId(stringPokemonId);

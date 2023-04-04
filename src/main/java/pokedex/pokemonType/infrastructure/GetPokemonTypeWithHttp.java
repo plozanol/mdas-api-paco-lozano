@@ -16,7 +16,7 @@ import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 
 @RestController
 public class GetPokemonTypeWithHttp {
-    @GetMapping("/getPokemonTypesByName")
+    @GetMapping("/get-pokemon-types-by-name")
     public static String getPokemonTypesByName(@RequestParam String pokemonName) {
         var getPokemonType = new GetPokemonTypes(new PokeApiPokemonTypeRepository());
         if (pokemonName.isBlank()) {

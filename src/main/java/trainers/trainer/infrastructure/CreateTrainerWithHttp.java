@@ -11,7 +11,7 @@ import trainers.trainer.domain.exceptions.TrainerAlreadyCreatedException;
 
 @RestController
 public class CreateTrainerWithHttp {
-    @GetMapping("CreateTrainer")
+    @GetMapping("create-trainer")
     public static void CreateTrainer(@RequestParam String id) {
         var trainerRepoository = new InMemoryTrainerRepository();
         var createTrainer = new CreateTrainer(trainerRepoository);

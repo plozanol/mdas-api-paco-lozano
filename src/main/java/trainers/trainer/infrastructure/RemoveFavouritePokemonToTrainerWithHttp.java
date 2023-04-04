@@ -11,7 +11,7 @@ import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 @RestController
 public class RemoveFavouritePokemonToTrainerWithHttp {
-    @GetMapping("RemoveFavouritePokemonToTrainer")
+    @GetMapping("remove-favourite-pokemon-to-trainer")
     public static void RemoveFavouritePokemonToTrainer(@RequestHeader("user_id") String trainerID, @RequestParam(name="pokemonId") String stringPokemonId) {
         blankIdGuard(trainerID);
         var pokemonID = parsePokemonId(stringPokemonId);

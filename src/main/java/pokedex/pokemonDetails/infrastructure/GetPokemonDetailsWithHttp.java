@@ -12,7 +12,7 @@ import shared.infrastructure.exceptions.NotNumericPokemonIdException;
 
 @RestController
 public class GetPokemonDetailsWithHttp {
-    @GetMapping("/getPokemonDetailsByID")
+    @GetMapping("/get-pokemon-details-by-id")
     public static String getPokemonDetailsByID(@RequestParam(name="pokemonId") String stringPokemonId) {
 
         var pokemonID = parsePokemonId(stringPokemonId);

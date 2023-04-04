@@ -33,7 +33,7 @@ class TrainerWebTest {
 
             this.webTestClient
                     .get()
-                    .uri("/CreateTrainer?id=" + TRAINER_ID)
+                    .uri("/create-trainer?id=" + TRAINER_ID)
                     .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
                     .exchange()
                     .expectStatus()
@@ -41,7 +41,7 @@ class TrainerWebTest {
 
             this.webTestClient
                     .get()
-                    .uri("/AddFavouritePokemonToTrainer?pokemonId=" + POKEMON_ID)
+                    .uri("/add-favourite-pokemon-to-trainer?pokemonId=" + POKEMON_ID)
                     .header("user_id", TRAINER_ID)
                     .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
                     .exchange()
@@ -55,7 +55,7 @@ class TrainerWebTest {
 
             this.webTestClient
                     .get()
-                    .uri("/RemoveFavouritePokemonToTrainer?pokemonId=" + POKEMON_ID)
+                    .uri("/remove-favourite-pokemon-to-trainer?pokemonId=" + POKEMON_ID)
                     .header("user_id", TRAINER_ID)
                     .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
                     .exchange()
@@ -72,7 +72,7 @@ class TrainerWebTest {
     void shouldReturnTrainerDontExistException_whenUserIdDoesNotExist() {
         this.webTestClient
                 .get()
-                .uri("/AddFavouritePokemonToTrainer?pokemonId=1")
+                .uri("/add-favourite-pokemon-to-trainer?pokemonId=1")
                 .header("user_id", "99")
                 .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
                 .exchange()
