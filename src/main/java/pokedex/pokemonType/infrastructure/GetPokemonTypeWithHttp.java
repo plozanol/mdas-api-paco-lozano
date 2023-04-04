@@ -3,6 +3,7 @@ package pokedex.pokemonType.infrastructure;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import pokedex.pokemonType.application.GetPokemonTypes;
@@ -15,16 +16,15 @@ import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 
 @RestController
 public class GetPokemonTypeWithHttp {
-    @GetMapping("getPokemonTypesByName/{pokemonName}")
-    public static String getPokemonTypesByName(@PathVariable String pokemonName) {
+    @GetMapping("/getPokemonTypesByName")
+    public static String getPokemonTypesByName(@RequestParam String pokemonName) {
         var getPokemonType = new GetPokemonTypes(new PokeApiPokemonTypeRepository());
         if (pokemonName.isBlank()) {
             System.out.println("No correct input");
         }
         try {
             PokemonTypeCollection pokemonTypeCollection = getPokemonType.execute(pokemonName);
-            String jsonFormatTypes = transformToJSON(pokemonTypeCollection);
-            return jsonFormatTypes;
+            return transformToJSON(pokemonTypeCollection);
         } catch (PokemonNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
         } catch (EmptyPokemonNameParameterException e) {
