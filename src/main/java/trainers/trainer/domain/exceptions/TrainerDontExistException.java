@@ -1,4 +1,4 @@
 package trainers.trainer.domain.exceptions;
 
-public class TrainerDontExistException extends Exception {
+public class TrainerDontExistException extends IllegalArgumentException {
 }

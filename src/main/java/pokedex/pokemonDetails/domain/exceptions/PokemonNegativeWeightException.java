@@ -1,4 +1,4 @@
 package pokedex.pokemonDetails.domain.exceptions;
 
-public class PokemonNegativeWeightException extends Exception {
+public class PokemonNegativeWeightException extends IllegalArgumentException {
 }

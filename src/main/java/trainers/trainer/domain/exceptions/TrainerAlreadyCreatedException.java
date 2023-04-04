@@ -1,4 +1,4 @@
 package trainers.trainer.domain.exceptions;
 
-public class TrainerAlreadyCreatedException extends Exception {
+public class TrainerAlreadyCreatedException extends IllegalArgumentException {
 }
