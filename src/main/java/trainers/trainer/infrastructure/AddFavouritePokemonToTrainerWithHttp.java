@@ -18,18 +18,26 @@ public class AddFavouritePokemonToTrainerWithHttp {
         var pokemonID = parsePokemonId(stringPokemonId);
         var trainerRepository = new InMemoryTrainerRepository();
         var addFavouritePokemon = new AddFavouritePokemon(trainerRepository);
-
-        try {
-            addFavouritePokemon.execute(trainerID,pokemonID);
-        } catch (TrainerDontExistException e) {
-            return ResponseEntity.badRequest().body("TrainerDontExistException");
-        } catch (PokemonAlreadyExistInFavouritePokemonsException e) {
-            return ResponseEntity.badRequest().body("PokemonAlreadyExistInFavouritePokemons");
-        } catch (PokemonIdOutOfRangeException e) {
-            return ResponseEntity.badRequest().body("PokemonIdOutOfRangeException");
-        }
-
+        addFavouritePokemon.execute(trainerID,pokemonID);
         return ResponseEntity.ok().body("ok");
+    }
+
+    @ExceptionHandler(TrainerDontExistException.class)
+    public ResponseEntity<String> handleTrainerDontExistException(TrainerDontExistException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("TrainerDontExistException");
+    }
+
+    @ExceptionHandler(PokemonAlreadyExistInFavouritePokemonsException.class)
+    public ResponseEntity<String> handlePokemonAlreadyExistInFavouritePokemonsException(PokemonAlreadyExistInFavouritePokemonsException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("PokemonAlreadyExistInFavouritePokemons");
+    }
+
+    @ExceptionHandler(PokemonIdOutOfRangeException.class)
+    public ResponseEntity<String> handlePokemonIdOutOfRangeException(PokemonIdOutOfRangeException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("PokemonIdOutOfRangeException");
     }
 
     private static void blankIdGuard(String ID) {

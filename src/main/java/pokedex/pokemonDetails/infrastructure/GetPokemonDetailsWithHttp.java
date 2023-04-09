@@ -1,35 +1,48 @@
 package pokedex.pokemonDetails.infrastructure;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 import pokedex.pokemonDetails.application.GetPokemonDetails;
 import pokedex.pokemonDetails.domain.PokemonDetail;
 import pokedex.pokemonDetails.domain.exceptions.*;
 import shared.infrastructure.exceptions.NotNumericPokemonIdException;
+import trainers.trainer.domain.exceptions.TrainerAlreadyCreatedException;
 
 @RestController
 public class GetPokemonDetailsWithHttp {
     @GetMapping("/get-pokemon-details-by-id")
     public static String getPokemonDetailsByID(@RequestParam(name="pokemonId") String stringPokemonId) {
-
         var pokemonID = parsePokemonId(stringPokemonId);
         var getPokemonDetails = new GetPokemonDetails(new PokeApiPokemonDetailRepository());
+        PokemonDetail pokemonTypeCollection = getPokemonDetails.execute(pokemonID);
+        return transformToJSON(pokemonTypeCollection);
+    }
 
-        try {
-            PokemonDetail pokemonTypeCollection = getPokemonDetails.execute(pokemonID);
-            return transformToJSON(pokemonTypeCollection);
-        } catch (PokemonNameNotEmptyException |
-                 PokemonNegativeHeightException | PokemonIdOutOfRangeException | PokemonNegativeWeightException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"InvalidPokemonData");
+    @ExceptionHandler({
+                PokemonNameNotEmptyException.class,
+                PokemonNegativeHeightException.class,
+                PokemonIdOutOfRangeException.class,
+                PokemonNegativeWeightException.class
+    })
+    public ResponseEntity<String> handleInvalidPokemonDataExceptions(TrainerAlreadyCreatedException exception) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("InvalidPokemonData");
+    }
 
-        } catch (PokemonNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
-        } catch (PokemonDetailRepositoryConnectionException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"ConnectionError");
-        }
+    @ExceptionHandler(PokemonDetailRepositoryConnectionException.class)
+    public ResponseEntity<String> handlePokemonDetailRepositoryConnectionException(PokemonDetailRepositoryConnectionException exception) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("ConnectionError");
+    }
+
+    @ExceptionHandler(TrainerAlreadyCreatedException.class)
+    public ResponseEntity<String> handleTrainerAlreadyCreatedException(TrainerAlreadyCreatedException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("TrainerAlreadyCreatedException");
     }
 
     private static int parsePokemonId(String stringPokemonId) {

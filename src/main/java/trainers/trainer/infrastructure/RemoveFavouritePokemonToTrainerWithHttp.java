@@ -1,6 +1,7 @@
 package trainers.trainer.infrastructure;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import shared.infrastructure.exceptions.NotNumericPokemonIdException;
@@ -17,19 +18,25 @@ public class RemoveFavouritePokemonToTrainerWithHttp {
         var pokemonID = parsePokemonId(stringPokemonId);
         var trainerRepository = new InMemoryTrainerRepository();
         var removeFavouritePokemon = new RemoveFavouritePokemon(trainerRepository);
+        removeFavouritePokemon.execute(trainerID,pokemonID);
+    }
 
-        try {
-            removeFavouritePokemon.execute(trainerID,pokemonID);
-        } catch (TrainerDontExistException e) {
-            //TODO check HTTP STATUS
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"TrainerDontExistException");
-        } catch (PokemonIdOutOfRangeException e) {
-            //TODO check HTTP STATUS
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"PokemonIdOutOfRangeException");
-        } catch (PokemonNotExistInFavouritePokemonsException e) {
-            //TODO check HTTP STATUS
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"PokemonNotExistInFavouritePokemonsException");
-        }
+    @ExceptionHandler(TrainerDontExistException.class)
+    public ResponseEntity<String> handleTrainerDontExistException(TrainerDontExistException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("TrainerDontExistException");
+    }
+
+    @ExceptionHandler(PokemonIdOutOfRangeException.class)
+    public ResponseEntity<String> handlePokemonIdOutOfRangeException(PokemonIdOutOfRangeException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("PokemonIdOutOfRangeException");
+    }
+
+    @ExceptionHandler(PokemonNotExistInFavouritePokemonsException.class)
+    public ResponseEntity<String> handlePokemonNotExistInFavouritePokemonsException(PokemonNotExistInFavouritePokemonsException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("PokemonNotExistInFavouritePokemonsException");
     }
 
     private static void blankIdGuard(String ID) {
