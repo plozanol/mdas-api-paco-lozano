@@ -17,7 +17,7 @@ public class AddFavouritePokemonTest {
     private TrainerRepository trainerRepository;
 
     @Test
-    void shouldThrowException_ifTrainerDoesNotExist() throws PokemonIdOutOfRangeException {
+    void shouldThrowException_ifTrainerDoesNotExist() {
 
         // GIVEN
         AddFavouritePokemon addFavouritePokemon = new AddFavouritePokemon(trainerRepository);

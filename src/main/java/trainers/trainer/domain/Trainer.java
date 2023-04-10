@@ -16,11 +16,11 @@ public class Trainer {
         return ID;
     }
 
-    public void addFavouritePokemon(PokemonID pokemonID) throws PokemonAlreadyExistInFavouritePokemonsException {
+    public void addFavouritePokemon(PokemonID pokemonID) {
         favoritePokemons.addFavouritePokemon(pokemonID);
     }
 
-    public void removeFavouritePokemon(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemonsException {
+    public void removeFavouritePokemon(PokemonID pokemonID) {
         favoritePokemons.removeFavouritePokemon(pokemonID);
     }
 

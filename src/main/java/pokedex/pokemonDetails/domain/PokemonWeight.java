@@ -5,7 +5,7 @@ import pokedex.pokemonDetails.domain.exceptions.PokemonNegativeWeightException;
 public class PokemonWeight {
     private final double weight;
 
-    public PokemonWeight(double weight) throws PokemonNegativeWeightException {
+    public PokemonWeight(double weight) {
         pokemonNegativeWeightGuard(weight);
         this.weight = weight;
     }
@@ -14,7 +14,7 @@ public class PokemonWeight {
         return weight;
     }
 
-    private void pokemonNegativeWeightGuard(double weight) throws PokemonNegativeWeightException {
+    private void pokemonNegativeWeightGuard(double weight) {
         if (weight < 0) {
             throw new PokemonNegativeWeightException();
         }

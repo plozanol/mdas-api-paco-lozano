@@ -8,13 +8,13 @@ public class TrainerCreator {
         this.trainerRepository = trainerRepository;
     }
 
-    public void execute(TrainerID ID) throws TrainerAlreadyCreatedException {
+    public void execute(TrainerID ID) {
         guardNotExist(ID);
         Trainer trainer = new Trainer(ID);
         trainerRepository.create(trainer);
     }
 
-    private void guardNotExist(TrainerID id) throws TrainerAlreadyCreatedException {
+    private void guardNotExist(TrainerID id) {
         if(trainerRepository.exist(id)){
             throw new TrainerAlreadyCreatedException();
         }

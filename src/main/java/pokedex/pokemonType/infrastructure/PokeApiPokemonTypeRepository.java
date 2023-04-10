@@ -19,14 +19,12 @@ public class PokeApiPokemonTypeRepository implements PokemonTypeRepository {
 
     private String apiUrl = "https://pokeapi.co/api/v2/pokemon/";
 
-    PokeApiPokemonTypeRepository(){
-
-    }
+    PokeApiPokemonTypeRepository() {}
     PokeApiPokemonTypeRepository(String apiUrl){
         this.apiUrl = apiUrl;
     }
 
-    public PokemonTypeCollection get(PokemonName name) throws PokemonWithoutTypesException, PokemonTypeRepositoryConnectionException, EmptyPokemonNameParameterException, PokemonNotFoundException {
+    public PokemonTypeCollection get(PokemonName name) {
         guardPokemonNameIsNotEmpty(name.toString());
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -53,12 +51,12 @@ public class PokeApiPokemonTypeRepository implements PokemonTypeRepository {
         return new PokemonTypeCollection(result);
     }
 
-    private void guardPokemonNameExists(HttpResponse<String> response) throws PokemonNotFoundException {
+    private void guardPokemonNameExists(HttpResponse<String> response) {
         if (response.statusCode() == 404)
             throw new PokemonNotFoundException();
     }
 
-    private void guardPokemonNameIsNotEmpty(String name) throws EmptyPokemonNameParameterException {
+    private void guardPokemonNameIsNotEmpty(String name) {
         if (name.isEmpty()) {
             throw new EmptyPokemonNameParameterException();
         }

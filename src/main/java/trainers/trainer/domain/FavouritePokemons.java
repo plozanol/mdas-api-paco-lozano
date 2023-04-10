@@ -14,23 +14,23 @@ public class FavouritePokemons {
         favouritePokemonsIds = new HashSet<>();
     }
 
-    public void addFavouritePokemon(PokemonID pokemonID) throws PokemonAlreadyExistInFavouritePokemonsException {
+    public void addFavouritePokemon(PokemonID pokemonID) {
         guardPokemonIdDuplicated(pokemonID);
         favouritePokemonsIds.add(pokemonID);
     }
 
-    private void guardPokemonIdDuplicated(PokemonID pokemonID) throws PokemonAlreadyExistInFavouritePokemonsException {
+    private void guardPokemonIdDuplicated(PokemonID pokemonID) {
         if (pokemonExist(pokemonID)) {
             throw new PokemonAlreadyExistInFavouritePokemonsException();
         }
     }
 
-    public void removeFavouritePokemon(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemonsException {
+    public void removeFavouritePokemon(PokemonID pokemonID) {
         guardPokemonIdExist(pokemonID);
         favouritePokemonsIds.remove(pokemonID);
     }
 
-    private void guardPokemonIdExist(PokemonID pokemonID) throws PokemonNotExistInFavouritePokemonsException {
+    private void guardPokemonIdExist(PokemonID pokemonID) {
         if (!pokemonExist(pokemonID)) {
             throw new PokemonNotExistInFavouritePokemonsException();
         }

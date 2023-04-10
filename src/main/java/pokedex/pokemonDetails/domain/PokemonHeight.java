@@ -5,7 +5,7 @@ import pokedex.pokemonDetails.domain.exceptions.PokemonNegativeHeightException;
 public class PokemonHeight {
     private final double height;
 
-    public PokemonHeight(double height) throws PokemonNegativeHeightException {
+    public PokemonHeight(double height) {
         pokemonNegativeHeightGuard(height);
         this.height = height;
     }
@@ -14,7 +14,7 @@ public class PokemonHeight {
         return height;
     }
 
-    private void pokemonNegativeHeightGuard(double height) throws PokemonNegativeHeightException {
+    private void pokemonNegativeHeightGuard(double height) {
         if (height < 0) {
             throw new PokemonNegativeHeightException();
         }

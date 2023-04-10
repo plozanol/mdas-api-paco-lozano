@@ -5,12 +5,12 @@ import pokedex.pokemonDetails.domain.exceptions.PokemonIdOutOfRangeException;
 public class PokemonID {
     private final int ID;
 
-    public PokemonID(int ID) throws PokemonIdOutOfRangeException {
+    public PokemonID(int ID) {
         pokemonOutOfRangeGuard(ID);
         this.ID = ID;
     }
 
-    private void pokemonOutOfRangeGuard(int id) throws PokemonIdOutOfRangeException {
+    private void pokemonOutOfRangeGuard(int id) {
         if (id < 1 || id > 898) {
             throw new PokemonIdOutOfRangeException();
         }

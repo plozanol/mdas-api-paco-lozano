@@ -5,12 +5,12 @@ import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 public class PokemonTypeCollection {
     private PokemonType[] types;
 
-    public PokemonTypeCollection(PokemonType... types) throws PokemonWithoutTypesException {
+    public PokemonTypeCollection(PokemonType... types) {
         guardNumberPokemonTypes(types);
         this.types = types;
     }
 
-    private void guardNumberPokemonTypes(PokemonType... types) throws PokemonWithoutTypesException {
+    private void guardNumberPokemonTypes(PokemonType... types) {
         if (types == null || types.length < 1) {
             throw new PokemonWithoutTypesException();
         }

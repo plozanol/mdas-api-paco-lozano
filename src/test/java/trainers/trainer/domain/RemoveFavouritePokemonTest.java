@@ -15,7 +15,7 @@ public class RemoveFavouritePokemonTest {
     private TrainerRepository trainerRepository;
 
     @Test
-    void shouldPokemonIdOutOfRangeException_whenTrainerDoesNotExist() throws PokemonIdOutOfRangeException {
+    void shouldPokemonIdOutOfRangeException_whenTrainerDoesNotExist() {
         // GIVEN
         RemoveFavouritePokemon removeFavouritePokemon = new RemoveFavouritePokemon(trainerRepository);
         TrainerID ID = new TrainerID("1234");

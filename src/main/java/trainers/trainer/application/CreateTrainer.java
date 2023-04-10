@@ -12,7 +12,7 @@ public class CreateTrainer {
         this.trainerRepository = trainerRepository;
     }
 
-    public void execute(String ID) throws TrainerAlreadyCreatedException {
+    public void execute(String ID) {
         new TrainerCreator(trainerRepository).execute(new TrainerID(ID));
     }
 }

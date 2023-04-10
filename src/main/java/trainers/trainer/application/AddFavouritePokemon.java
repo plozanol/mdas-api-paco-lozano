@@ -14,7 +14,7 @@ public class AddFavouritePokemon {
         this.trainerRepository = trainerRepository;
     }
 
-    public void execute(String trainerId, int pokemonID) throws PokemonIdOutOfRangeException, TrainerDontExistException, PokemonAlreadyExistInFavouritePokemonsException {
+    public void execute(String trainerId, int pokemonID) {
         var addFavouritePokemon = new trainers.trainer.domain.AddFavouritePokemon(trainerRepository);
         addFavouritePokemon.execute(new TrainerID(trainerId), new PokemonID(pokemonID));
     }

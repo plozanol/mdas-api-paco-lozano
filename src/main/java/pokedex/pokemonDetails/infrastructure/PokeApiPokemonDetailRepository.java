@@ -14,15 +14,13 @@ public class PokeApiPokemonDetailRepository implements PokemonDetailRepository {
 
     private String apiUrl = "https://pokeapi.co/api/v2/pokemon/";
 
-     public PokeApiPokemonDetailRepository() {
-
-    }
+     public PokeApiPokemonDetailRepository() {}
 
     public PokeApiPokemonDetailRepository(String apiUrl) {
         this.apiUrl = apiUrl;
     }
 
-    public PokemonDetail getById(PokemonID pokemonID) throws PokemonDetailRepositoryConnectionException, PokemonNotFoundException, PokemonIdOutOfRangeException, PokemonNameNotEmptyException, PokemonNegativeWeightException, PokemonNegativeHeightException {
+    public PokemonDetail getById(PokemonID pokemonID) {
 
         HttpResponse<String> response;
         try {
@@ -32,15 +30,6 @@ public class PokeApiPokemonDetailRepository implements PokemonDetailRepository {
         }
         guardPokemonNameExists(response);
         JSONObject obj = new JSONObject(response.body());
-
-//        var typesArray = obj.getJSONArray("types");
-//        List<PokemonType> pokemonTypes = new ArrayList<PokemonType>();
-//        for (int i = 0; i < typesArray.length(); i++) {
-//            String type = typesArray.getJSONObject(i).getJSONObject("type").getString("name");
-//            pokemonTypes.add(new PokemonType(type));
-//        }
-//
-//        PokemonType[] result = pokemonTypes.toArray(new PokemonType[0]);
         PokemonID ID = new PokemonID(obj.getInt("id"));
         PokemonName name = new PokemonName(obj.getString("name"));
         PokemonWeight weight = new PokemonWeight(obj.getDouble("weight"));
@@ -59,7 +48,7 @@ public class PokeApiPokemonDetailRepository implements PokemonDetailRepository {
         return response;
     }
 
-    private void guardPokemonNameExists(HttpResponse<String> response) throws PokemonNotFoundException {
+    private void guardPokemonNameExists(HttpResponse<String> response) {
         if (response.statusCode() == 404)
             throw new PokemonNotFoundException();
     }

@@ -13,7 +13,7 @@ public class GetPokemonDetails {
         this.pokemonDetailRepository = pokemonDetailRepository;
     }
 
-    public PokemonDetail execute(int pokemonID) throws PokemonIdOutOfRangeException, PokemonDetailRepositoryConnectionException, PokemonNotFoundException, PokemonNameNotEmptyException, PokemonNegativeHeightException, PokemonNegativeWeightException {
+    public PokemonDetail execute(int pokemonID) {
         return pokemonDetailRepository.getById(new PokemonID(pokemonID));
     }
 

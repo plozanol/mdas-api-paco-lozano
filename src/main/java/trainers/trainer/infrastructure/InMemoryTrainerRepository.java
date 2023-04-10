@@ -8,7 +8,6 @@ import trainers.trainer.domain.TrainerRepository;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Repository
 public class InMemoryTrainerRepository implements TrainerRepository {
     private static final Map<String,Trainer> memoryOfTrainers = new HashMap<>();
