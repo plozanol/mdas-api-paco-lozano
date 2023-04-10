@@ -1,4 +1,4 @@
-package pokedex.pokemonDetails.infrastructure;
+package pokedex.pokemon.infrastructure;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pokedex.pokemonDetails.application.GetPokemonDetails;
-import pokedex.pokemonDetails.domain.PokemonDetail;
-import pokedex.pokemonDetails.domain.exceptions.*;
+import pokedex.pokemon.application.GetPokemon;
+import pokedex.pokemon.domain.Pokemon;
+import pokedex.pokemon.domain.exceptions.*;
 import shared.infrastructure.exceptions.NotNumericPokemonIdException;
 import trainers.trainer.domain.exceptions.TrainerAlreadyCreatedException;
 
 @RestController
-public class GetPokemonDetailsWithHttp {
+public class GetPokemonWithHttp {
     @GetMapping("/get-pokemon-details-by-id")
     public static String getPokemonDetailsByID(@RequestParam(name="pokemonId") String stringPokemonId) {
         var pokemonID = parsePokemonId(stringPokemonId);
-        var getPokemonDetails = new GetPokemonDetails(new PokeApiPokemonDetailRepository());
-        PokemonDetail pokemonTypeCollection = getPokemonDetails.execute(pokemonID);
+        var getPokemonDetails = new GetPokemon(new PokeApiPokemonRepository());
+        Pokemon pokemonTypeCollection = getPokemonDetails.execute(pokemonID);
         return transformToJSON(pokemonTypeCollection);
     }
 
@@ -28,8 +28,8 @@ public class GetPokemonDetailsWithHttp {
                 .body("ConnectionError");
     }
 
-    @ExceptionHandler(PokemonDetailRepositoryConnectionException.class)
-    public ResponseEntity<String> handlePokemonDetailRepositoryConnectionException(PokemonDetailRepositoryConnectionException exception) {
+    @ExceptionHandler(PokemonRepositoryConnectionException.class)
+    public ResponseEntity<String> handlePokemonDetailRepositoryConnectionException(PokemonRepositoryConnectionException exception) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("ConnectionError");
     }
@@ -50,7 +50,7 @@ public class GetPokemonDetailsWithHttp {
         return pokemonId;
     }
 
-    private static String transformToJSON(PokemonDetail pokemonTypeCollection) {
+    private static String transformToJSON(Pokemon pokemonTypeCollection) {
         return String.format("""
                     {
                         "id":"%d",

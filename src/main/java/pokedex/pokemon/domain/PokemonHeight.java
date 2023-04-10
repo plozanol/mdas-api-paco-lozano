@@ -1,6 +1,6 @@
-package pokedex.pokemonDetails.domain;
+package pokedex.pokemon.domain;
 
-import pokedex.pokemonDetails.domain.exceptions.PokemonNegativeHeightException;
+import pokedex.pokemon.domain.exceptions.PokemonNegativeHeightException;
 
 public class PokemonHeight {
     private final double height;

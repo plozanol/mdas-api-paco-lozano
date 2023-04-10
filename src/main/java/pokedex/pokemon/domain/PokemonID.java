@@ -1,6 +1,6 @@
-package pokedex.pokemonDetails.domain;
+package pokedex.pokemon.domain;
 
-import pokedex.pokemonDetails.domain.exceptions.PokemonIdOutOfRangeException;
+import pokedex.pokemon.domain.exceptions.PokemonIdOutOfRangeException;
 
 public class PokemonID {
     private final int ID;

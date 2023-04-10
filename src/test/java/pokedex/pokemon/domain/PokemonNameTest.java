@@ -1,7 +1,7 @@
-package pokedex.pokemonDetails.domain;
+package pokedex.pokemon.domain;
 
 import org.junit.jupiter.api.Test;
-import pokedex.pokemonDetails.domain.exceptions.PokemonNameNotEmptyException;
+import pokedex.pokemon.domain.exceptions.PokemonNameNotEmptyException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

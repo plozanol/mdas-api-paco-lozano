@@ -1,6 +1,6 @@
-package pokedex.pokemonDetails.domain;
+package pokedex.pokemon.domain;
 
-import pokedex.pokemonDetails.domain.exceptions.PokemonNegativeWeightException;
+import pokedex.pokemon.domain.exceptions.PokemonNegativeWeightException;
 
 public class PokemonWeight {
     private final double weight;

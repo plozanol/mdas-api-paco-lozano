@@ -1,6 +1,6 @@
-package pokedex.pokemonDetails.domain;
+package pokedex.pokemon.domain;
 
-import pokedex.pokemonDetails.domain.exceptions.PokemonNameNotEmptyException;
+import pokedex.pokemon.domain.exceptions.PokemonNameNotEmptyException;
 
 public class PokemonName {
     private final String name;

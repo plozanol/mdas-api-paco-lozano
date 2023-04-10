@@ -1,15 +1,15 @@
-package pokedex.pokemonDetails.domain;
+package pokedex.pokemon.domain;
 
-public class PokemonDetail {
+public class Pokemon {
     private final PokemonID ID;
     private final PokemonName name;
     private final PokemonHeight height;
     private final PokemonWeight weight;
 
-    public PokemonDetail(PokemonID ID,
-                         PokemonName name,
-                         PokemonHeight height,
-                         PokemonWeight weight) {
+    public Pokemon(PokemonID ID,
+                   PokemonName name,
+                   PokemonHeight height,
+                   PokemonWeight weight) {
         this.ID = ID;
         this.name = name;
         this.height = height;

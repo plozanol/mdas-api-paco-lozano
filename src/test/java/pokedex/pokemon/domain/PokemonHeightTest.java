@@ -1,8 +1,8 @@
-package pokedex.pokemonDetails.domain;
+package pokedex.pokemon.domain;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import pokedex.pokemonDetails.domain.exceptions.PokemonNegativeHeightException;
+import pokedex.pokemon.domain.exceptions.PokemonNegativeHeightException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;

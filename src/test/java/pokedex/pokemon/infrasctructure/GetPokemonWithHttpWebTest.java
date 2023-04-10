@@ -1,4 +1,4 @@
-package pokedex.pokemonDetails.infrasctructure;
+package pokedex.pokemon.infrasctructure;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import springboot.MdasSpringbootAplication;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @SpringBootTest(classes = MdasSpringbootAplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class GetPokemonDetailsWithHttpWebTest {
+class GetPokemonWithHttpWebTest {
 
     @Autowired
     private WebTestClient webTestClient;

@@ -1,8 +1,8 @@
-package pokedex.pokemonDetails.infrastructure;
+package pokedex.pokemon.infrastructure;
 
 import org.json.JSONObject;
-import pokedex.pokemonDetails.domain.*;
-import pokedex.pokemonDetails.domain.exceptions.*;
+import pokedex.pokemon.domain.*;
+import pokedex.pokemon.domain.exceptions.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,23 +10,23 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class PokeApiPokemonDetailRepository implements PokemonDetailRepository {
+public class PokeApiPokemonRepository implements PokemonRepository {
 
     private String apiUrl = "https://pokeapi.co/api/v2/pokemon/";
 
-     public PokeApiPokemonDetailRepository() {}
+     public PokeApiPokemonRepository() {}
 
-    public PokeApiPokemonDetailRepository(String apiUrl) {
+    public PokeApiPokemonRepository(String apiUrl) {
         this.apiUrl = apiUrl;
     }
 
-    public PokemonDetail getById(PokemonID pokemonID) {
+    public Pokemon getById(PokemonID pokemonID) {
 
         HttpResponse<String> response;
         try {
             response = apiCall(pokemonID);
         } catch (IOException | InterruptedException e) {
-            throw new PokemonDetailRepositoryConnectionException("An error has ocurred conecting to pokeapi");
+            throw new PokemonRepositoryConnectionException("An error has ocurred conecting to pokeapi");
         }
         guardPokemonNameExists(response);
         JSONObject obj = new JSONObject(response.body());
@@ -34,7 +34,7 @@ public class PokeApiPokemonDetailRepository implements PokemonDetailRepository {
         PokemonName name = new PokemonName(obj.getString("name"));
         PokemonWeight weight = new PokemonWeight(obj.getDouble("weight"));
         PokemonHeight height = new PokemonHeight(obj.getDouble("height"));
-        return new PokemonDetail(ID, name, height, weight);
+        return new Pokemon(ID, name, height, weight);
     }
 
     private HttpResponse<String> apiCall(PokemonID pokemonID) throws IOException, InterruptedException {
