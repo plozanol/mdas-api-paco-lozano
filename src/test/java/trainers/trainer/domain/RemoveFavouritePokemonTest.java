@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
 import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;

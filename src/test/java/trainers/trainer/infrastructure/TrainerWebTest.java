@@ -10,9 +10,9 @@ import trainers.trainer.domain.PokemonID;
 import trainers.trainer.domain.Trainer;
 import trainers.trainer.domain.TrainerID;
 import trainers.trainer.domain.TrainerRepository;
-import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @SpringBootTest(classes = MdasSpringbootAplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

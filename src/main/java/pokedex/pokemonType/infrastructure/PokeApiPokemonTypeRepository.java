@@ -1,11 +1,13 @@
 package pokedex.pokemonType.infrastructure;
 
 import org.json.JSONObject;
-import pokedex.pokemonType.domain.*;
+import pokedex.pokemonType.domain.PokemonName;
+import pokedex.pokemonType.domain.PokemonType;
+import pokedex.pokemonType.domain.PokemonTypeCollection;
+import pokedex.pokemonType.domain.PokemonTypeRepository;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
 import pokedex.pokemonType.domain.exceptions.PokemonNotFoundException;
 import pokedex.pokemonType.domain.exceptions.PokemonTypeRepositoryConnectionException;
-import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 
 import java.io.IOException;
 import java.net.URI;

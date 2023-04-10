@@ -1,10 +1,10 @@
 package pokedex.pokemonType.infrastructure;
 
 import pokedex.pokemonType.application.GetPokemonTypes;
-import pokedex.pokemonType.domain.exceptions.PokemonTypeRepositoryConnectionException;
 import pokedex.pokemonType.domain.PokemonTypeCollection;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
 import pokedex.pokemonType.domain.exceptions.PokemonNotFoundException;
+import pokedex.pokemonType.domain.exceptions.PokemonTypeRepositoryConnectionException;
 import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 
 import java.util.Arrays;

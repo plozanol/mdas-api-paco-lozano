@@ -2,7 +2,8 @@ package pokedex.pokemon.infrastructure;
 
 import org.json.JSONObject;
 import pokedex.pokemon.domain.*;
-import pokedex.pokemon.domain.exceptions.*;
+import pokedex.pokemon.domain.exceptions.PokemonNotFoundException;
+import pokedex.pokemon.domain.exceptions.PokemonRepositoryConnectionException;
 
 import java.io.IOException;
 import java.net.URI;

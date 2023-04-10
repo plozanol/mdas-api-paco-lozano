@@ -1,8 +1,8 @@
 package pokedex.pokemon.application;
 
 import pokedex.pokemon.domain.Pokemon;
-import pokedex.pokemon.domain.PokemonRepository;
 import pokedex.pokemon.domain.PokemonID;
+import pokedex.pokemon.domain.PokemonRepository;
 
 public class GetPokemon {
 

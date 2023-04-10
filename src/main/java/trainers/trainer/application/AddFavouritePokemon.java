@@ -3,9 +3,6 @@ package trainers.trainer.application;
 import trainers.trainer.domain.PokemonID;
 import trainers.trainer.domain.TrainerID;
 import trainers.trainer.domain.TrainerRepository;
-import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
-import trainers.trainer.domain.exceptions.PokemonIdOutOfRangeException;
-import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 public class AddFavouritePokemon {
     private final TrainerRepository trainerRepository;

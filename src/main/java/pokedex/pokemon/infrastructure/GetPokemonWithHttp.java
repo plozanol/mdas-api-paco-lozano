@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pokedex.pokemon.application.GetPokemon;
 import pokedex.pokemon.domain.Pokemon;
-import pokedex.pokemon.domain.exceptions.*;
+import pokedex.pokemon.domain.exceptions.PokemonNotFoundException;
+import pokedex.pokemon.domain.exceptions.PokemonRepositoryConnectionException;
 import shared.infrastructure.exceptions.NotNumericPokemonIdException;
 import trainers.trainer.domain.exceptions.TrainerAlreadyCreatedException;
 

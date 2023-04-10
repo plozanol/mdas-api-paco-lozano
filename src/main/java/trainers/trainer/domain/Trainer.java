@@ -1,8 +1,5 @@
 package trainers.trainer.domain;
 
-import trainers.trainer.domain.exceptions.PokemonAlreadyExistInFavouritePokemonsException;
-import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
-
 public class Trainer {
     private final TrainerID ID;
     private final FavouritePokemons favoritePokemons;

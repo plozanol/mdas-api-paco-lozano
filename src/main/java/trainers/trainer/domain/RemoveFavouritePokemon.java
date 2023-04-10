@@ -1,6 +1,5 @@
 package trainers.trainer.domain;
 
-import trainers.trainer.domain.exceptions.PokemonNotExistInFavouritePokemonsException;
 import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 public class RemoveFavouritePokemon {
