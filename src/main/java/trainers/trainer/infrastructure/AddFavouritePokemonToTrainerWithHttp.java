@@ -12,10 +12,10 @@ import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 @RestController
 public class AddFavouritePokemonToTrainerWithHttp {
-    @GetMapping("add-favourite-pokemon-to-trainer")
-    public ResponseEntity<String> AddFavouritePokemonToTrainer(@RequestHeader("user_id") String trainerID, @RequestParam(name="pokemonId") String stringPokemonId) {
+    @PatchMapping("/trainer/favourite-pokemon/{id}")
+    public ResponseEntity<String> addFavouritePokemonToTrainer(@RequestHeader("user_id") String trainerID, @PathVariable String id) {
         blankIdGuard(trainerID);
-        var pokemonID = parsePokemonId(stringPokemonId);
+        var pokemonID = parsePokemonId(id);
         var trainerRepository = new InMemoryTrainerRepository();
         var addFavouritePokemon = new AddFavouritePokemon(trainerRepository);
         addFavouritePokemon.execute(trainerID,pokemonID);
@@ -24,7 +24,7 @@ public class AddFavouritePokemonToTrainerWithHttp {
 
     @ExceptionHandler(TrainerDontExistException.class)
     public ResponseEntity<String> handleTrainerDontExistException(TrainerDontExistException exception) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("TrainerDontExistException");
     }
 

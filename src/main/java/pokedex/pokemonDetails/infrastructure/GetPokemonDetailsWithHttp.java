@@ -22,15 +22,10 @@ public class GetPokemonDetailsWithHttp {
         return transformToJSON(pokemonTypeCollection);
     }
 
-    @ExceptionHandler({
-                PokemonNameNotEmptyException.class,
-                PokemonNegativeHeightException.class,
-                PokemonIdOutOfRangeException.class,
-                PokemonNegativeWeightException.class
-    })
-    public ResponseEntity<String> handleInvalidPokemonDataExceptions(TrainerAlreadyCreatedException exception) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("InvalidPokemonData");
+    @ExceptionHandler(PokemonNotFoundException.class)
+    public ResponseEntity<String> handlePokemonNotFoundException(PokemonNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("ConnectionError");
     }
 
     @ExceptionHandler(PokemonDetailRepositoryConnectionException.class)
@@ -41,7 +36,7 @@ public class GetPokemonDetailsWithHttp {
 
     @ExceptionHandler(TrainerAlreadyCreatedException.class)
     public ResponseEntity<String> handleTrainerAlreadyCreatedException(TrainerAlreadyCreatedException exception) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body("TrainerAlreadyCreatedException");
     }
 
@@ -57,13 +52,13 @@ public class GetPokemonDetailsWithHttp {
 
     private static String transformToJSON(PokemonDetail pokemonTypeCollection) {
         return String.format("""
-                        {
-                            "id":"%d",
-                            "name":"%s",
-                            "height":"%G",
-                            "weight":"%G"
-                        }
-                        """, 
+                    {
+                        "id":"%d",
+                        "name":"%s",
+                        "height":"%G",
+                        "weight":"%G"
+                    }
+                    """,
                 pokemonTypeCollection.ID().ID(),
                 pokemonTypeCollection.name().toString(),
                 pokemonTypeCollection.height().height(),

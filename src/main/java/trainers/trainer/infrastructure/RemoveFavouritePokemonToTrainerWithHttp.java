@@ -12,10 +12,10 @@ import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 @RestController
 public class RemoveFavouritePokemonToTrainerWithHttp {
-    @GetMapping("remove-favourite-pokemon-to-trainer")
-    public static void RemoveFavouritePokemonToTrainer(@RequestHeader("user_id") String trainerID, @RequestParam(name="pokemonId") String stringPokemonId) {
+    @DeleteMapping("/trainer/favourite-pokemon/{id}")
+    public static void removeFavouritePokemonToTrainer(@RequestHeader("user_id") String trainerID, @PathVariable String id) {
         blankIdGuard(trainerID);
-        var pokemonID = parsePokemonId(stringPokemonId);
+        var pokemonID = parsePokemonId(id);
         var trainerRepository = new InMemoryTrainerRepository();
         var removeFavouritePokemon = new RemoveFavouritePokemon(trainerRepository);
         removeFavouritePokemon.execute(trainerID,pokemonID);

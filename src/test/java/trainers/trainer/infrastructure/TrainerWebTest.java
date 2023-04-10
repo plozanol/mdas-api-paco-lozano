@@ -25,54 +25,49 @@ class TrainerWebTest {
     private TrainerRepository trainerRepository;
 
     @Test
-    void shouldCreateTrainer_AndAddFavouritePoken_AndRemoveFavouritePokemon() {
-        try {
-            // GIVEN
-            final int POKEMON_ID = 111;
-            final String TRAINER_ID = "999";
+    void shouldCreateTrainer_AndAddFavouritePokemon_AndRemoveFavouritePokemon() {
+        // GIVEN
+        final int POKEMON_ID = 111;
+        final String TRAINER_ID = "999";
 
-            this.webTestClient
-                    .get()
-                    .uri("/create-trainer?id=" + TRAINER_ID)
-                    .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
-                    .exchange()
-                    .expectStatus()
-                    .is2xxSuccessful();
+        this.webTestClient
+                .post()
+                .uri("/trainer/" + TRAINER_ID)
+                .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful();
 
-            this.webTestClient
-                    .get()
-                    .uri("/add-favourite-pokemon-to-trainer?pokemonId=" + POKEMON_ID)
-                    .header("user_id", TRAINER_ID)
-                    .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
-                    .exchange()
-                    .expectStatus()
-                    .is2xxSuccessful();
+        this.webTestClient
+                .patch()
+                .uri("/trainer/favourite-pokemon/" + POKEMON_ID)
+                .header("user_id", TRAINER_ID)
+                .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful();
 
-            Trainer trainer = trainerRepository.get(new TrainerID(TRAINER_ID));
+        Trainer trainer = trainerRepository.get(new TrainerID(TRAINER_ID));
 
-            assertTrue(trainer.hasFavouritePokemon(new PokemonID(POKEMON_ID)));
+        assertTrue(trainer.hasFavouritePokemon(new PokemonID(POKEMON_ID)));
 
+        this.webTestClient
+                .delete()
+                .uri("/trainer/favourite-pokemon/" + POKEMON_ID)
+                .header("user_id", TRAINER_ID)
+                .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful();
 
-            this.webTestClient
-                    .get()
-                    .uri("/remove-favourite-pokemon-to-trainer?pokemonId=" + POKEMON_ID)
-                    .header("user_id", TRAINER_ID)
-                    .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
-                    .exchange()
-                    .expectStatus()
-                    .is2xxSuccessful();
-
-            assertFalse(trainer.hasFavouritePokemon(new PokemonID(POKEMON_ID)));
-        } catch (PokemonIdOutOfRangeException e) {
-            fail();
-        }
+        assertFalse(trainer.hasFavouritePokemon(new PokemonID(POKEMON_ID)));
     }
 
     @Test
     void shouldReturnTrainerDontExistException_whenUserIdDoesNotExist() {
         this.webTestClient
-                .get()
-                .uri("/add-favourite-pokemon-to-trainer?pokemonId=1")
+                .patch()
+                .uri("/trainer/favourite-pokemon/1")
                 .header("user_id", "99")
                 .header(HttpHeaders.ACCEPT, APPLICATION_JSON_VALUE)
                 .exchange()
