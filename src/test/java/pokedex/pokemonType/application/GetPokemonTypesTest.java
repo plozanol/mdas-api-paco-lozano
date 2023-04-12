@@ -1,5 +1,6 @@
 package pokedex.pokemonType.application;
 
+import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -37,6 +38,8 @@ public class GetPokemonTypesTest {
         } catch (PokemonWithoutTypesException | PokemonTypeRepositoryConnectionException |
                  EmptyPokemonNameParameterException | PokemonNotFoundException e) {
             fail();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
 
 
