@@ -1,6 +1,8 @@
 package pokedex.pokemon.infrastructure;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Repository;
 import pokedex.pokemon.domain.*;
 import pokedex.pokemon.domain.exceptions.PokemonNotFoundException;
 import pokedex.pokemon.domain.exceptions.PokemonRepositoryConnectionException;
@@ -11,17 +13,18 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+@Repository
 public class PokeApiPokemonRepository implements PokemonRepository {
 
     private String apiUrl = "https://pokeapi.co/api/v2/pokemon/";
 
-     public PokeApiPokemonRepository() {}
+    public PokeApiPokemonRepository() {}
 
     public PokeApiPokemonRepository(String apiUrl) {
         this.apiUrl = apiUrl;
     }
 
-    public Pokemon getById(PokemonID pokemonID) {
+    public Pokemon get(PokemonID pokemonID) throws JSONException {
 
         HttpResponse<String> response;
         try {
@@ -52,5 +55,20 @@ public class PokeApiPokemonRepository implements PokemonRepository {
     private void guardPokemonNameExists(HttpResponse<String> response) {
         if (response.statusCode() == 404)
             throw new PokemonNotFoundException();
+    }
+
+    @Override
+    public void create(Pokemon pokemon) {
+
+    }
+
+    @Override
+    public void update(Pokemon pokemon) {
+
+    }
+
+    @Override
+    public boolean exist(PokemonID pokemonID) {
+        return false;
     }
 }
