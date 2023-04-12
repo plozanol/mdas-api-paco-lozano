@@ -1,5 +1,6 @@
 package pokedex.pokemonType.infrastructure;
 
+import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +18,7 @@ import pokedex.pokemonType.domain.exceptions.PokemonWithoutTypesException;
 @RestController
 public class GetPokemonTypeWithHttp {
     @GetMapping("/get-pokemon-types-by-name")
-    public static String getPokemonTypesByName(@RequestParam String pokemonName) {
+    public static String getPokemonTypesByName(@RequestParam String pokemonName) throws JSONException {
         var getPokemonType = new GetPokemonTypes(new PokeApiPokemonTypeRepository());
         if (pokemonName.isBlank()) {
             System.out.println("No correct input");

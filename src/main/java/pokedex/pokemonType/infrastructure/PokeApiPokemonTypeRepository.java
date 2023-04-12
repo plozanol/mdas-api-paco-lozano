@@ -1,5 +1,6 @@
 package pokedex.pokemonType.infrastructure;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import pokedex.pokemonType.domain.PokemonName;
 import pokedex.pokemonType.domain.PokemonType;
@@ -26,7 +27,7 @@ public class PokeApiPokemonTypeRepository implements PokemonTypeRepository {
         this.apiUrl = apiUrl;
     }
 
-    public PokemonTypeCollection get(PokemonName name) {
+    public PokemonTypeCollection get(PokemonName name) throws JSONException {
         guardPokemonNameIsNotEmpty(name.toString());
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()

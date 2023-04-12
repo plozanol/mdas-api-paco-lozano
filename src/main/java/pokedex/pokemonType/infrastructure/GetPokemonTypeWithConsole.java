@@ -1,5 +1,6 @@
 package pokedex.pokemonType.infrastructure;
 
+import org.json.JSONException;
 import pokedex.pokemonType.application.GetPokemonTypes;
 import pokedex.pokemonType.domain.PokemonTypeCollection;
 import pokedex.pokemonType.domain.exceptions.EmptyPokemonNameParameterException;
@@ -23,6 +24,8 @@ public class GetPokemonTypeWithConsole {
         } catch (PokemonWithoutTypesException | EmptyPokemonNameParameterException |
                  PokemonTypeRepositoryConnectionException | PokemonNotFoundException e) {
             System.out.println(e.getMessage());
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
         }
     }
 
