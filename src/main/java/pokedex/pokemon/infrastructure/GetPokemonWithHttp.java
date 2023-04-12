@@ -1,12 +1,12 @@
 package pokedex.pokemon.infrastructure;
 
+import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pokedex.pokemon.application.GetPokemon;
 import pokedex.pokemon.domain.Pokemon;
 import pokedex.pokemon.domain.exceptions.PokemonNotFoundException;
 import pokedex.pokemon.domain.exceptions.PokemonRepositoryConnectionException;
@@ -15,12 +15,18 @@ import trainers.trainer.domain.exceptions.TrainerAlreadyCreatedException;
 
 @RestController
 public class GetPokemonWithHttp {
+
+    private GetPokemonController getPokemonController;
+
+    public GetPokemonWithHttp(GetPokemonController getPokemonController) {
+        this.getPokemonController = getPokemonController;
+    }
+
     @GetMapping("/get-pokemon-details-by-id")
-    public static String getPokemonDetailsByID(@RequestParam(name="pokemonId") String stringPokemonId) {
+    public String getPokemonDetailsByID(@RequestParam(name="pokemonId") String stringPokemonId) throws JSONException {
         var pokemonID = parsePokemonId(stringPokemonId);
-        var getPokemonDetails = new GetPokemon(new PokeApiPokemonRepository());
-        Pokemon pokemonTypeCollection = getPokemonDetails.execute(pokemonID);
-        return transformToJSON(pokemonTypeCollection);
+        Pokemon pokemon = getPokemonController.execute(pokemonID);
+        return transformToJSON(pokemon);
     }
 
     @ExceptionHandler(PokemonNotFoundException.class)
@@ -51,19 +57,21 @@ public class GetPokemonWithHttp {
         return pokemonId;
     }
 
-    private static String transformToJSON(Pokemon pokemonTypeCollection) {
+    private static String transformToJSON(Pokemon pokemon) {
         return String.format("""
                     {
                         "id":"%d",
                         "name":"%s",
                         "height":"%G",
-                        "weight":"%G"
+                        "weight":"%G",
+                        "favouriteCounter":"%d"
                     }
                     """,
-                pokemonTypeCollection.ID().ID(),
-                pokemonTypeCollection.name().toString(),
-                pokemonTypeCollection.height().height(),
-                pokemonTypeCollection.weight().weight()
+                pokemon.ID().ID(),
+                pokemon.name().toString(),
+                pokemon.height().height(),
+                pokemon.weight().weight(),
+                pokemon.favouriteCounter().favouriteCounter()
         );
     }
 }

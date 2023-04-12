@@ -12,12 +12,17 @@ import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
 @RestController
 public class AddFavouritePokemonToTrainerWithHttp {
+
+    private final AddFavouritePokemon addFavouritePokemon;
+
+    public AddFavouritePokemonToTrainerWithHttp(AddFavouritePokemon addFavouritePokemon) {
+        this.addFavouritePokemon = addFavouritePokemon;
+    }
+
     @PatchMapping("/trainer/favourite-pokemon/{id}")
     public ResponseEntity<String> addFavouritePokemonToTrainer(@RequestHeader("user_id") String trainerID, @PathVariable String id) {
         blankIdGuard(trainerID);
         var pokemonID = parsePokemonId(id);
-        var trainerRepository = new InMemoryTrainerRepository();
-        var addFavouritePokemon = new AddFavouritePokemon(trainerRepository);
         addFavouritePokemon.execute(trainerID,pokemonID);
         return ResponseEntity.ok().body("ok");
     }
