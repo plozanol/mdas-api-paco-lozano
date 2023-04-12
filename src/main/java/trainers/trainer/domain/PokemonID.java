@@ -33,4 +33,9 @@ public class PokemonID {
         var pokemonIdObj = (PokemonID) obj;
         return ID == pokemonIdObj.ID;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(ID);
+    }
 }
