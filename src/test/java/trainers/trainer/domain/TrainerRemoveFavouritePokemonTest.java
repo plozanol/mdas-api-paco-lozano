@@ -9,18 +9,18 @@ import trainers.trainer.domain.exceptions.TrainerDontExistException;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
-public class RemoveFavouritePokemonTest {
+public class TrainerRemoveFavouritePokemonTest {
     @Mock
     private TrainerRepository trainerRepository;
 
     @Test
     void shouldPokemonIdOutOfRangeException_whenTrainerDoesNotExist() {
         // GIVEN
-        RemoveFavouritePokemon removeFavouritePokemon = new RemoveFavouritePokemon(trainerRepository);
+        TrainerRemoveFavouritePokemon trainerRemoveFavouritePokemon = new TrainerRemoveFavouritePokemon(trainerRepository);
         TrainerID ID = new TrainerID("1234");
         PokemonID pokemonID = new PokemonID(1);
 
         // THEN
-        assertThrows(TrainerDontExistException.class, () -> removeFavouritePokemon.execute(ID, pokemonID));
+        assertThrows(TrainerDontExistException.class, () -> trainerRemoveFavouritePokemon.execute(ID, pokemonID));
     }
 }

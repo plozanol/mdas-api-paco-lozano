@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @ExtendWith(MockitoExtension.class)
-public class AddFavouritePokemonTest {
+public class TrainerAddFavouritePokemonTest {
 
     @Mock
     private TrainerRepository trainerRepository;
@@ -20,12 +20,12 @@ public class AddFavouritePokemonTest {
     void shouldThrowException_ifTrainerDoesNotExist() {
 
         // GIVEN
-        AddFavouritePokemon addFavouritePokemon = new AddFavouritePokemon(trainerRepository);
+        TrainerAddFavouritePokemon trainerAddFavouritePokemon = new TrainerAddFavouritePokemon(trainerRepository);
         TrainerID ID = new TrainerID("1234");
         try {
             PokemonID pokemonID = new PokemonID(1);
             // THEN
-            assertThrows(TrainerDontExistException.class, () -> addFavouritePokemon.execute(ID, pokemonID));
+            assertThrows(TrainerDontExistException.class, () -> trainerAddFavouritePokemon.execute(ID, pokemonID));
         } catch (PokemonIdOutOfRangeException e) {
             fail();
         }

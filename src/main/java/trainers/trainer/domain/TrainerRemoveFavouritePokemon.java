@@ -2,10 +2,10 @@ package trainers.trainer.domain;
 
 import trainers.trainer.domain.exceptions.TrainerDontExistException;
 
-public class RemoveFavouritePokemon {
+public class TrainerRemoveFavouritePokemon {
     private final TrainerRepository trainerRepository;
 
-    public RemoveFavouritePokemon(TrainerRepository trainerRepository) {
+    public TrainerRemoveFavouritePokemon(TrainerRepository trainerRepository) {
         this.trainerRepository = trainerRepository;
     }
 
